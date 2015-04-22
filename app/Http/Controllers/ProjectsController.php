@@ -21,7 +21,6 @@ class ProjectsController extends Controller
 	public function index()
 	{
 		$projects = Project::all();
-
 		return view('projects.index', compact('projects'));
 	}
 
@@ -33,7 +32,6 @@ class ProjectsController extends Controller
 	public function create()
 	{
 		$users = User::all();
-
 		return view('projects.create', compact('users'));
 	}
 
@@ -47,7 +45,6 @@ class ProjectsController extends Controller
 	{
 		$input = Input::all();
 		Project::create($input);
-
 		return Redirect::route('projects.index')->with('message', 'Project created');
 	}
 
@@ -71,7 +68,6 @@ class ProjectsController extends Controller
 	public function edit(Project $project)
 	{
 		$users = User::all();
-
 		return view('projects.edit', compact('project', 'users'));
 	}
 
@@ -86,7 +82,6 @@ class ProjectsController extends Controller
 	{
 		$input = array_except(Input::all(), '_method');
 		$project->update($input);
-
 		return Redirect::route('projects.show', $project->slug)->with('message', 'Project updated.');
 	}
 
@@ -99,7 +94,6 @@ class ProjectsController extends Controller
 	public function destroy(Project $project)
 	{
 		$project->delete();
-
 		return Redirect::route('projects.index')->with('message', 'Project deleted.');
 	}
 

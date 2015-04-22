@@ -8,7 +8,6 @@ class TasksTableSeeder extends Seeder
 
 	public function run()
 	{
-		// Uncomment the below to wipe the table clean before populating
 		DB::table('tasks')->delete();
 
 		$tasks = array(
@@ -21,7 +20,6 @@ class TasksTableSeeder extends Seeder
 			['id' => 7, 'name' => 'Task 7', 'slug' => 'task-7', 'project_id' => 2, 'completed' => false, 'description' => 'My fifth task', 'created_at' => new DateTime, 'updated_at' => new DateTime],
 		);
 
-		//// Uncomment the below to run the seeder
 		DB::table('tasks')->insert($tasks);
 	}
 

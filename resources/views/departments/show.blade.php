@@ -18,11 +18,16 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Title</th>
+                    <th>Name</th>
                 </tr>
                 </thead>
                 <tbody data-link="row" class="rowlink">
-
+                @foreach( $department->users as $user )
+                    <tr>
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->name }}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         @endif

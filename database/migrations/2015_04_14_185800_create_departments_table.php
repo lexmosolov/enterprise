@@ -17,8 +17,8 @@ class CreateDepartmentsTable extends Migration
 			$table->increments('id');
 			$table->integer('head_id')->unsigned();
 			$table->foreign('head_id')->references('id')->on('users');
-			$table->string('name')->default('');
-			$table->string('slug')->default('');
+			$table->string('name')->unique();
+			$table->string('slug');
 		});
 	}
 

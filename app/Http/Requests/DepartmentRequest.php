@@ -23,9 +23,8 @@ class DepartmentRequest extends Request
 	public function rules()
 	{
 		return [
-			'name' => ['required', 'min:3'],
-			'user_id' => ['required'],
-			'slug' => ['required', 'unique:departments'],
+			'name' => ['required', 'min:3', 'unique:departments'],
+			'head_id' => ['required'],
 		];
 	}
 

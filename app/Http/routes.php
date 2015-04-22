@@ -11,26 +11,28 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
-Route::get('files', 'FilesController@index');
+Route::group(['middleware' => 'auth'], function () {
+
+	Route::get('/', 'HomeController@index');
+	Route::get('files', 'FilesController@index');
+
+	Route::resource('projects', 'ProjectsController');
+	Route::bind('projects', function ($value, $route) {
+		return App\Project::whereSlug($value)->first();
+	});
+
+	Route::resource('projects.tasks', 'TasksController');
+	Route::bind('tasks', function ($value, $route) {
+		return App\Task::whereSlug($value)->first();
+	});
+
+	Route::resource('departments', 'DepartmentsController');
+	Route::bind('departments', function ($value) {
+		return App\Department::whereSlug($value)->first();
+	});
+});
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-// Provide controller methods with object instead of ID
-//Route::model('tasks', 'Task');
-//Route::model('projects', 'Project');
-Route::resource('projects', 'ProjectsController');
-Route::resource('projects.tasks', 'TasksController');
-// Use slugs rather than IDs in URLs
-Route::bind('projects', function ($value, $route) {
-	return App\Project::whereSlug($value)->first();
-});
-Route::bind('tasks', function ($value, $route) {
-	return App\Task::whereSlug($value)->first();
-});
-
-Route::resource('departments', 'DepartmentsController');
-Route::bind('departments', function ($value) {
-	return App\Department::whereSlug($value)->first();
-});

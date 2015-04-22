@@ -21,11 +21,10 @@ class DepartmentsController extends Controller
 	 */
 	public function index()
 	{
-
-		\Debugbar::info(Str::slug("test"));
-		\Debugbar::info(Str::slug("тест"));
+		\Debugbar::info(Str::slug("тест такой"));
 
 		$departments = Department::all();
+
 		return view('departments.index', compact('departments'));
 	}
 
@@ -43,14 +42,14 @@ class DepartmentsController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 *
+	 * @param \Illuminate\Http\Request $request
 	 * @return Response
 	 */
-	public function store()
+	public function store(DepartmentRequest $request)
 	{
 		$input = Input::all();
 		$input['slug'] = Str::slug($input['name']);
 		Department::create($input);
-
 		return Redirect::route('departments.index')->with('message', 'Department created');
 	}
 
@@ -87,20 +86,21 @@ class DepartmentsController extends Controller
 	public function update(Department $department, DepartmentRequest $request)
 	{
 		$input = array_except(Input::all(), '_method');
+		$input['slug'] = Str::slug($input['name']);
 		$department->update($input);
-
-		return Redirect::route('projects.show', $department->slug)->with('message', 'Project updated.');
+		return Redirect::route('departments.show', $department->slug)->with('message', 'Department updated.');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int $id
+	 * @param  Department $department
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Department $department)
 	{
-
+		$department->delete();
+		return Redirect::route('departments.index')->with('message', 'Department deleted.');
 	}
 
 }

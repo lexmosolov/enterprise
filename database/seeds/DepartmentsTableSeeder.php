@@ -8,7 +8,6 @@ class DepartmentsTableSeeder extends Seeder
 
 	public function run()
 	{
-		// Uncomment the below to wipe the table clean before populating
 		DB::table('departments')->delete();
 
 		$departments = array(
@@ -17,7 +16,6 @@ class DepartmentsTableSeeder extends Seeder
 			['id' => 3, 'head_id' => 3, 'name' => 'Department 3', 'slug' => 'department-3'],
 		);
 
-		// Uncomment the below to run the seeder
 		DB::table('departments')->insert($departments);
 	}
 
