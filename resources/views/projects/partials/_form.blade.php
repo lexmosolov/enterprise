@@ -8,6 +8,6 @@
 </div>
 <div class="form-group">
     {!! Form::label('user_id', 'User') !!}
-    {!! Form::select('user_id', array_pluck($users, 'name', 'id'), $value = null, ['class'=>'form-control']) !!}
+    {!! Form::select('user_id', $users->lists('name','id'), $value = null, ['class'=>'form-control']) !!}
 </div>
 {!! Form::submit($submit_text, ['class'=>'btn btn-default']) !!}

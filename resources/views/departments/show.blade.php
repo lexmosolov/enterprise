@@ -34,8 +34,8 @@
     </div>
 
     {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('departments.destroy', $department->slug))) !!}
-    {-- link_to_route('departments.tasks.create', 'Create Task', $department->slug, array('class' => 'btn btn-success')) --}
-    {!! link_to_route('departments.edit', 'Edit Department', array($department->slug), array('class' => 'btn btn-info')) !!}
+    {-- link_to_route('departments.user.add', 'Add User', $department, array('class' => 'btn btn-success')) --}
+    {!! link_to_route('departments.edit', 'Edit Department', $department, array('class' => 'btn btn-info')) !!}
     {!! Form::submit('Delete Department', array('class' => 'btn btn-danger')) !!}
     {!! Form::close() !!}
 

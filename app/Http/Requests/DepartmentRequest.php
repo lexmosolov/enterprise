@@ -23,7 +23,7 @@ class DepartmentRequest extends Request
 	public function rules()
 	{
 		return [
-			'name' => ['required', 'min:3', 'unique:departments'],
+			'name' => ['required', 'min:3'], // TODO: 'unique:departments,name,{$id}'
 			'head_id' => ['required'],
 		];
 	}

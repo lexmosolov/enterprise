@@ -27,9 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 
 	Route::resource('departments', 'DepartmentsController');
-	Route::bind('departments', function ($value) {
-		return App\Department::whereSlug($value)->first();
-	});
+	Route::model('departments', 'App\Department');
 });
 
 Route::controllers([

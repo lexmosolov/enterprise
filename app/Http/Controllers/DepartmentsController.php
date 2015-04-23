@@ -21,10 +21,7 @@ class DepartmentsController extends Controller
 	 */
 	public function index()
 	{
-		\Debugbar::info(Str::slug("тест такой"));
-
 		$departments = Department::all();
-
 		return view('departments.index', compact('departments'));
 	}
 
@@ -35,7 +32,7 @@ class DepartmentsController extends Controller
 	 */
 	public function create()
 	{
-		$users = User::all();
+		$users = User::all()->lists('name', 'id');
 		return view('departments.create', compact('users'));
 	}
 
@@ -47,9 +44,10 @@ class DepartmentsController extends Controller
 	 */
 	public function store(DepartmentRequest $request)
 	{
-		$input = Input::all();
-		$input['slug'] = Str::slug($input['name']);
-		Department::create($input);
+		// Getting All Input For The Request
+		$input = $request->all();
+		$department = Department::create($input);
+		$department->users()->attach($input['user_list']);
 		return Redirect::route('departments.index')->with('message', 'Department created');
 	}
 
@@ -72,7 +70,7 @@ class DepartmentsController extends Controller
 	 */
 	public function edit(Department $department)
 	{
-		$users = User::all();
+		$users = User::all()->lists('name', 'id');
 		return view('departments.edit', compact('department', 'users'));
 	}
 
@@ -85,10 +83,10 @@ class DepartmentsController extends Controller
 	 */
 	public function update(Department $department, DepartmentRequest $request)
 	{
-		$input = array_except(Input::all(), '_method');
-		$input['slug'] = Str::slug($input['name']);
+		$input = $request->all();
 		$department->update($input);
-		return Redirect::route('departments.show', $department->slug)->with('message', 'Department updated.');
+		$department->users()->sync($input['user_list']);
+		return Redirect::route('departments.show', $department)->with('message', 'Department updated.');
 	}
 
 	/**

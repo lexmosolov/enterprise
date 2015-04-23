@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Department extends Model
 {
 
-	protected $guarded = [];
+	protected $fillable = ['name', 'head_id'];
 	public $timestamps = false;
 
 
@@ -17,5 +17,10 @@ class Department extends Model
 	public function users()
 	{
 		return $this->belongsToMany('App\User');
+	}
+
+	public function getUserListAttribute()
+	{
+		return $this->users()->lists('id');
 	}
 }

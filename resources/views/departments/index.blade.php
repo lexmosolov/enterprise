@@ -27,7 +27,7 @@
                     <tr>
                         <td>{{ $department->id }}</td>
                         <td>
-                            <a href="{{ route('departments.show', $department->slug) }}">{{ $department->name }}</a>
+                            <a href="{{ route('departments.show', $department->id) }}">{{ $department->name }}</a>
                         </td>
                         <td>{{ $department->head->name }}</td>
                     </tr>
