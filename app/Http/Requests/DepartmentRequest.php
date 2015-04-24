@@ -1,6 +1,7 @@
 <?php namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
+use App\Department;
+use Psy\Util\String;
 
 class DepartmentRequest extends Request
 {
@@ -22,10 +23,14 @@ class DepartmentRequest extends Request
 	 */
 	public function rules()
 	{
+		// Get current model id if exists
+		$department_id = isset($this->departments->id) ? $this->departments->id : '';
+
 		return [
-			'name' => ['required', 'min:3'], // TODO: 'unique:departments,name,{$id}'
+			'name' => ['required', 'min:3', "unique:departments,name,{$department_id}"],
 			'head_id' => ['required'],
 		];
 	}
+
 
 }
