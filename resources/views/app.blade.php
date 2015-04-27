@@ -47,8 +47,8 @@
                     <li><a href="{{ action('ProjectsController@index') }}"><span class="glyphicon glyphicon-tasks"
                                                                                  aria-hidden="true"></span> Projects</a>
                     </li>
-                    <li><a href="{{ action('FilesController@index') }}"><span class="glyphicon glyphicon-file"
-                                                                              aria-hidden="true"></span> Docs</a></li>
+                    <li><a href="{{ action('UsersController@index') }}"><span class="glyphicon glyphicon-user"
+                                                                              aria-hidden="true"></span> Users</a></li>
                     <li><a href="{{ action('FilesController@index') }}"><span class="glyphicon glyphicon-envelope"
                                                                               aria-hidden="true"></span> Messages</a>
                     </li>

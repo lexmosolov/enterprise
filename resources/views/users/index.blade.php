@@ -2,14 +2,12 @@
 
 @section('content')
 
-
     <div class="panel panel-default">
         <div class="panel-heading">
-            Departments
-            {{--<span class="badge">{{ $projects->count() }}</span>--}}
+            Users
         </div>
 
-        @if ( !$departments->count() )
+        @if ( !$users->count() )
             <div class="panel-body">
                 You have no departments.
             </div>
@@ -18,18 +16,18 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Title</th>
-                    <th>Head</th>
+                    <th>Name</th>
+                    <th>Email</th>
                 </tr>
                 </thead>
                 <tbody data-link="row" class="rowlink">
-                @foreach( $departments as $department )
+                @foreach( $users as $user )
                     <tr>
-                        <td>{{ $department->id }}</td>
+                        <td>{{ $user->id }}</td>
                         <td>
-                            <a href="{{ route('departments.show', $department) }}">{{ $department->name }}</a>
+                            <a href="{{ route('users.show', $user) }}">{{ $user->name }}</a>
                         </td>
-                        <td>{{ $department->head->name }}</td>
+                        <td>{{ $user->email }}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -37,10 +35,9 @@
         @endif
     </div>
 
-
-    <a href="{{ route('departments.create') }}" class="btn btn-success" role="button">
+    <a href="{{ route('users.create') }}" class="btn btn-success" role="button">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        Create Department
+        Create
     </a>
 
 @endsection

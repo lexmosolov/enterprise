@@ -28,6 +28,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::resource('departments', 'DepartmentsController');
 	Route::model('departments', 'App\Department');
+
+	Route::resource('users', 'UsersController');
+	Route::model('users', 'App\User');
 });
 
 Route::controllers([
