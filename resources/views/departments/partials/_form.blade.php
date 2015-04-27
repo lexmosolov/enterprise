@@ -10,4 +10,4 @@
     {!! Form::label('user_list', 'Users') !!}
     {!! Form::select('user_list[]', $users, null, ['class'=>'form-control', 'multiple']) !!}
 </div>
-{!! Form::submit($submit_text, ['class'=>'btn btn-default']) !!}
+{!! Form::submit('Submit', ['class'=>'btn btn-default']) !!}
