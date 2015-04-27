@@ -6,7 +6,7 @@
         <div class="panel-heading">Edit Project</div>
         <div class="panel-body">
             {!! Form::model($department, ['method' => 'PATCH', 'route' => ['departments.update', $department]]) !!}
-            @include('departments/partials/_form', ['submit_text' => 'Save Changes'])
+            @include('departments/partials/_form', ['panel_heading' => 'Edit Department'])
             {!! Form::close() !!}
         </div>
     </div>
