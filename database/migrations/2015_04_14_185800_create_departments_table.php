@@ -16,7 +16,7 @@ class CreateDepartmentsTable extends Migration
 		Schema::create('departments', function (Blueprint $table) {
 			$table->increments('id');
 			$table->integer('head_id')->unsigned();
-			$table->foreign('head_id')->references('id')->on('users');
+			$table->foreign('head_id')->references('id')->on('users')->onDelete('cascade');
 			$table->string('name')->unique();
 		});
 	}
