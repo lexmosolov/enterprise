@@ -1,18 +1,19 @@
-<div class="form-group">
-    {!! Form::label('name', 'Name') !!}
-    {!! Form::text('name', $value = null, $attributes = ['class' => 'form-control']) !!}
+<div class="panel-body">
+    <div class="form-group">
+        {!! Form::label('name', 'Name') !!}
+        {!! Form::text('name', null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('completed', 'Completed') !!}
+        {!! Form::hidden('completed', 0) !!}
+        {!! Form::checkbox('completed') !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('description', 'Description') !!}
+        {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+    </div>
 </div>
-<div class="form-group">
-    {!! Form::label('slug', 'Slug') !!}
-    {!! Form::text('slug', $value = null, $attributes = ['class' => 'form-control']) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('description', 'Description:') !!}
-    {!! Form::textarea('description', null, $attributes = ['class' => 'form-control']) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('completed', 'Completed') !!}
-    {!! Form::checkbox('completed', 'value', false, $attributes = ['class' => 'checkbox']) !!}
+<div class="panel-footer">
+    {!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}
 </div>
 
-{!! Form::submit($submit_text, ['class'=>'btn btn-default']) !!}

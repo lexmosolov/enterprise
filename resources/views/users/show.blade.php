@@ -14,6 +14,8 @@
                 {!! Form::label('email', 'Email') !!}
                 {!! Form::text('email', null , ['class' => 'form-control', 'placeholder' => 'Name', 'readonly']) !!}
             </div>
+        </div>
+        <div class="panel-footer">
             {!! Form::close() !!}
             {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('users.destroy', $user))) !!}
             {!! link_to_route('users.edit', 'Edit', $user, array('class' => 'btn btn-info')) !!}
@@ -21,8 +23,6 @@
             {!! Form::close() !!}
         </div>
 
-
     </div>
-
 
 @endsection

@@ -16,15 +16,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', 'HomeController@index');
 	Route::get('files', 'FilesController@index');
 
-	Route::resource('projects', 'ProjectsController');
-	Route::bind('projects', function ($value, $route) {
-		return App\Project::whereSlug($value)->first();
-	});
-
-	Route::resource('projects.tasks', 'TasksController');
-	Route::bind('tasks', function ($value, $route) {
-		return App\Task::whereSlug($value)->first();
-	});
+	Route::resource('tasks', 'TasksController');
+	Route::model('tasks', 'App\Task');
 
 	Route::resource('departments', 'DepartmentsController');
 	Route::model('departments', 'App\Department');

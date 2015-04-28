@@ -1,16 +1,33 @@
 @extends('app')
 
 @section('content')
+
     <div class="panel panel-default">
-        <div class="panel-heading">{!! link_to_route('projects.index', 'Projects' ) !!} / {!!
-            link_to_route('projects.show', $project->name, [$project->slug]) !!} / {{ $task->name }}</div>
-        <div class="panel-body">
-            {{ $task->description }}
+        <div class="panel-heading">Task</div>
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ $task->name }}</td>
+            </tr>
+            <tr>
+                <th>Completed</th>
+                <td><input type="checkbox" {{ $task->completed ? 'checked' : 'unchecked' }} disabled></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ $task->description }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="panel-footer">
+            {!! Form::close() !!}
+            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('tasks.destroy', $task))) !!}
+            {!! link_to_route('tasks.edit', 'Edit', $task, ['class' => 'btn btn-info']) !!}
+            {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
+            {!! link_to_route('tasks.index', 'Back', [], ['class' => 'btn btn-default']) !!}
+            {!! Form::close() !!}
         </div>
     </div>
-    {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('projects.tasks.destroy', $project->slug, $task->slug))) !!}
-    {!! link_to_route('projects.tasks.edit', 'Edit Task', array($project->slug, $task->slug), array('class' => 'btn btn-info')) !!}
-    {!! Form::submit('Delete Task', array('class' => 'btn btn-danger')) !!}
-    {!! Form::close() !!}
 
 @endsection

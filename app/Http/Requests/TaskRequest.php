@@ -24,7 +24,6 @@ class TaskRequest extends Request
 	{
 		return [
 			'name' => ['required', 'min:3'],
-			'slug' => ['required'],
 			'description' => ['required'],
 		];
 	}

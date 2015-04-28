@@ -7,7 +7,7 @@
     <title>Enterprise Portal Prototype</title>
 
     {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
-    <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.4/yeti/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/add.css') }}" rel="stylesheet">
 
     <!-- Fonts -->
@@ -44,8 +44,8 @@
                     <li><a href="{{ action('DepartmentsController@index') }}"><span class="glyphicon glyphicon-list-alt"
                                                                                     aria-hidden="true"></span>
                             Departments</a></li>
-                    <li><a href="{{ action('ProjectsController@index') }}"><span class="glyphicon glyphicon-tasks"
-                                                                                 aria-hidden="true"></span> Projects</a>
+                    <li><a href="{{ action('TasksController@index') }}"><span class="glyphicon glyphicon-tasks"
+                                                                              aria-hidden="true"></span> Tasks</a>
                     </li>
                     <li><a href="{{ action('UsersController@index') }}"><span class="glyphicon glyphicon-user"
                                                                               aria-hidden="true"></span> Users</a></li>
