@@ -3,9 +3,9 @@
 @section('content')
 
     <div class="panel panel-default">
-
-        <div class="panel-heading">Tasks</div>
-
+        <div class="panel-heading">
+            <h3 class="panel-title">Tasks</h3>
+        </div>
         @if ( !$tasks->count() )
             <div class="panel-body">You have no tasks.</div>
         @else

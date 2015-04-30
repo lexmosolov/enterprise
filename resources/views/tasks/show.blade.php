@@ -3,7 +3,9 @@
 @section('content')
 
     <div class="panel panel-default">
-        <div class="panel-heading">Task</div>
+        <div class="panel-heading">
+            <h3 class="panel-title">Task</h3>
+        </div>
         <table class="table table-bordered">
             <tbody>
             <tr>
