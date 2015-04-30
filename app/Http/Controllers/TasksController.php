@@ -74,6 +74,7 @@ class TasksController extends Controller
 	public function update(Task $task, TaskRequest $request)
 	{
 		$input = $request->all();
+		dd($input);
 		$task->update($input);
 		return Redirect::route('tasks.show', $task)->with('message', 'Task updated.');
 	}
