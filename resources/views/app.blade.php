@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Enterprise Portal Prototype</title>
 
-    {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{--<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.4/lumen/bootstrap.min.css" rel="stylesheet">--}}
     <link href="{{ asset('css/add.css') }}" rel="stylesheet">
 
     <!-- Fonts -->
@@ -21,7 +21,7 @@
     <![endif]-->
 </head>
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -75,22 +75,26 @@
 </nav>
 
 <div class="container">
-    @if (Session::has('message'))
-        <div class="alert alert-warning">
-            <p><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                <span class="sr-only">Info:</span>
-                {{ Session::get('message') }}</p>
-        </div>
-    @endif
-    @if ($errors->any())
-        <div class='alert alert-danger'>
-            @foreach ( $errors->all() as $error )
-                <p>{{ $error }}</p>
-            @endforeach
-        </div>
-    @endif
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            @if (Session::has('message'))
+                <div class="alert alert-warning">
+                    <p><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Info:</span>
+                        {{ Session::get('message') }}</p>
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class='alert alert-danger'>
+                    @foreach ( $errors->all() as $error )
+                        <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+            @endif
 
-    @yield('content')
+            @yield('content')
+        </div>
+    </div>
 </div>
 
 <!-- Scripts -->
