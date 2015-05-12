@@ -46,8 +46,8 @@ class DepartmentsController extends Controller
 	{
 		// Getting All Input For The Request
 		$input = $request->all();
-		$department = Department::create($input);
-		$department->users()->attach($input['user_list']);
+		Department::create($input);
+//		$department->users()->attach($input['user_list']);
 		return Redirect::route('departments.index')->with('message', 'Department created');
 	}
 
