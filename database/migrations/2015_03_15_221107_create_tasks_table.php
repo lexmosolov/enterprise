@@ -18,6 +18,11 @@ class CreateTasksTable extends Migration
 			$table->string('name')->default('');
 			$table->boolean('completed')->default(false);
 			$table->text('description')->default('');
+			$table->integer('guarantor_id')->unsigned()->index();
+			$table->foreign('guarantor_id')->references('id')->on('users')->onDelete('cascade');
+			$table->integer('performer_id')->unsigned()->index();
+			$table->foreign('performer_id')->references('id')->on('users')->onDelete('cascade');
+			$table->date('deadline')->nullable();
 			$table->timestamps();
 		});
 	}
