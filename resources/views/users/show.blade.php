@@ -3,23 +3,34 @@
 @section('content')
 
     <div class="panel panel-default">
-        <div class="panel-heading">{!! link_to_route('users.index', 'Users' ) !!} / {{ $user->name }} </div>
-        <div class="panel-body">
-            {!! Form::model($user) !!}
-            <div class="form-group">
-                {!! Form::label('name', 'Name') !!}
-                {!! Form::text('name', null , ['class' => 'form-control', 'placeholder' => 'Name', 'readonly']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('email', 'Email') !!}
-                {!! Form::text('email', null , ['class' => 'form-control', 'placeholder' => 'Name', 'readonly']) !!}
-            </div>
+        <div class="panel-heading">
+            <h3 class="panel-title">USER</h3>
         </div>
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ $user->name }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ $user->email }}</td>
+            </tr>
+            <tr>
+                <th>Department</th>
+                <td>{{ $user->department->title }}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>{{ $user->role->title }}</td>
+            </tr>
+            </tbody>
+        </table>
         <div class="panel-footer">
-            {!! Form::close() !!}
             {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('users.destroy', $user))) !!}
             {!! link_to_route('users.edit', 'Edit', $user, array('class' => 'btn btn-info')) !!}
             {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
+            {!! link_to_route('users.index', 'Back', [], ['class' => 'btn btn-default']) !!}
             {!! Form::close() !!}
         </div>
 

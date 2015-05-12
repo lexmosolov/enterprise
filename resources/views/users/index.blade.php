@@ -4,12 +4,11 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            Users
+            <h3 class="panel-title">USERS</h3>
         </div>
-
         @if ( !$users->count() )
             <div class="panel-body">
-                You have no departments.
+                You have no users.
             </div>
         @else
             <table class="table table-hover table-bordered">
@@ -18,6 +17,8 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Department</th>
+                    <th>Role</th>
                 </tr>
                 </thead>
                 <tbody data-link="row" class="rowlink">
@@ -28,6 +29,8 @@
                             <a href="{{ route('users.show', $user) }}">{{ $user->name }}</a>
                         </td>
                         <td>{{ $user->email }}</td>
+                        <td>{{ $user->department->title }}</td>
+                        <td>{{ $user->role->title }}</td>
                     </tr>
                 @endforeach
                 </tbody>
