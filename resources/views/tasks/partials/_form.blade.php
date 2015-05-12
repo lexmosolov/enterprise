@@ -1,11 +1,23 @@
 <div class="panel-body">
     <div class="form-group">
-        {!! Form::label('namez', 'Name') !!}
+        {!! Form::label('name', 'Name') !!}
         {!! Form::text('name', null, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('description', 'Description') !!}
         {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('guarantor_id', 'Guarantor') !!}
+        {!! Form::select('guarantor_id', $users, null, ['class'=>'form-control']) !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('performer_id', 'Performer') !!}
+        {!! Form::select('performer_id', $users, null, ['class'=>'form-control']) !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('deadline', 'Deadline') !!}
+        {!! Form::date('deadline', null, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
         <div class="checkbox">
