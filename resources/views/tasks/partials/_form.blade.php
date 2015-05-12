@@ -33,4 +33,3 @@
     {!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}
     <a class="btn btn-default" href="{{ URL::previous() }}">Cancel</a>
 </div>
-

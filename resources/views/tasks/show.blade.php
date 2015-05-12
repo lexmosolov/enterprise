@@ -4,7 +4,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">TASK</h3>
+            <h3 class="panel-title">Task</h3>
         </div>
         <table class="table table-bordered">
             <tbody>
