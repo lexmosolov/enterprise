@@ -15,6 +15,9 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Completed</th>
+                    <th>Guarantor</th>
+                    <th>Performer</th>
+                    <th>Deadline</th>
                 </tr>
                 </thead>
                 <tbody data-link="row" class="rowlink">
@@ -23,6 +26,9 @@
                         <td>{{ $task->id }}</td>
                         <td><a href="{{ route('tasks.show', $task) }}">{{ $task->name }}</a></td>
                         <td><input type="checkbox" {{ $task->completed ? 'checked' : 'unchecked' }} disabled></td>
+                        <td>{{ $task->guarantor->name }}</td>
+                        <td>{{ $task->performer->name }}</td>
+                        <td>{{ $task->deadline }}</td>
                     </tr>
                 @endforeach
                 </tbody>
