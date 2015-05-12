@@ -11,9 +11,9 @@ class DepartmentsTableSeeder extends Seeder
 		DB::table('departments')->delete();
 
 		$departments = array(
-			['id' => 1, 'head_id' => 1, 'name' => 'Department 1'],
-			['id' => 2, 'head_id' => 2, 'name' => 'Department 2'],
-			['id' => 3, 'head_id' => 3, 'name' => 'Department 3'],
+			['id' => 1, 'title' => 'Department 1'],
+			['id' => 2, 'title' => 'Department 2'],
+			['id' => 3, 'title' => 'Department 3'],
 		);
 
 		DB::table('departments')->insert($departments);
