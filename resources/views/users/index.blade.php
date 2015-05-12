@@ -36,11 +36,13 @@
                 </tbody>
             </table>
         @endif
-    </div>
 
-    <a href="{{ route('users.create') }}" class="btn btn-success" role="button">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        Create
-    </a>
+        <div class="panel-footer">
+            <a href="{{ route('users.create') }}" class="btn btn-success" role="button">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                Create
+            </a>
+        </div>
+    </div>
 
 @endsection

@@ -33,7 +33,6 @@
             {!! link_to_route('users.index', 'Back', [], ['class' => 'btn btn-default']) !!}
             {!! Form::close() !!}
         </div>
-
     </div>
 
 @endsection
