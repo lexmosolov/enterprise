@@ -27,8 +27,7 @@ class DepartmentRequest extends Request
 		$department_id = isset($this->departments->id) ? $this->departments->id : '';
 
 		return [
-			'name' => ['required', 'min:3', "unique:departments,name,{$department_id}"],
-			'head_id' => ['required'],
+			'title' => ['required', 'min:3', "unique:departments,title,{$department_id}"],
 		];
 	}
 
