@@ -18,6 +18,8 @@ class CreateDepartmentUserTable extends Migration
 			$table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
 			$table->integer('user_id')->unsigned()->index();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->integer('role_id')->unsigned()->index();
+			$table->foreign('role_id')->references('id')->on('roles');
 		});
 	}
 
