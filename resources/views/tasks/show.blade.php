@@ -4,7 +4,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Task</h3>
+            <h3 class="panel-title">TASK</h3>
         </div>
         <table class="table table-bordered">
             <tbody>
@@ -15,10 +15,6 @@
             <tr>
                 <th>Completed</th>
                 <td><input type="checkbox" {{ $task->completed ? 'checked' : 'unchecked' }} disabled></td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ $task->description }}</td>
             </tr>
             <tr>
                 <th>Guarantor</th>
@@ -32,10 +28,13 @@
                 <th>Deadline</th>
                 <td>{{ $task->deadline }}</td>
             </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ $task->description }}</td>
+            </tr>
             </tbody>
         </table>
         <div class="panel-footer">
-            {!! Form::close() !!}
             {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('tasks.destroy', $task))) !!}
             {!! link_to_route('tasks.edit', 'Edit', $task, ['class' => 'btn btn-info']) !!}
             {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
