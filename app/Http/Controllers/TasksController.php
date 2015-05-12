@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Requests\TaskRequest;
 use App\Task;
+use App\User;
 use Redirect;
 
 class TasksController extends Controller
@@ -26,7 +27,8 @@ class TasksController extends Controller
 	 */
 	public function create()
 	{
-		return view('tasks.create');
+		$users = User::all()->lists('name', 'id');
+		return view('tasks.create', compact('users'));
 	}
 
 	/**
@@ -61,7 +63,8 @@ class TasksController extends Controller
 	 */
 	public function edit(Task $task)
 	{
-		return view('tasks.edit', compact('task'));
+		$users = User::all()->lists('name', 'id');
+		return view('tasks.edit', compact('task', 'users'));
 	}
 
 	/**
