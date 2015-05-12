@@ -2,17 +2,12 @@
 
 @section('content')
 
-
     <div class="panel panel-default">
         <div class="panel-heading">
-            Departments
-            {{--<span class="badge">{{ $projects->count() }}</span>--}}
+            <h3 class="panel-title">Departments</h3>
         </div>
-
         @if ( !$departments->count() )
-            <div class="panel-body">
-                You have no departments.
-            </div>
+            <div class="panel-body">You have no departments.</div>
         @else
             <table class="table table-hover table-bordered">
                 <thead>
@@ -33,12 +28,13 @@
                 </tbody>
             </table>
         @endif
+
+        <div class="panel-footer">
+            <a href="{{ route('departments.create') }}" class="btn btn-success" role="button">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                Create
+            </a>
+        </div>
     </div>
-
-
-    <a href="{{ route('departments.create') }}" class="btn btn-success" role="button">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        Create Department
-    </a>
 
 @endsection
