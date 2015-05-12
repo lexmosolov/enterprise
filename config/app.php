@@ -136,10 +136,6 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		/*
-		* Laravel Framework Service Providers...
-		*/
-		'Illuminate\Html\HtmlServiceProvider',
-		/*
 		 * Application Service Providers...
 		 */
 		'App\Providers\AppServiceProvider',
@@ -151,6 +147,7 @@ return [
 		'Gvb\Whoops\ServiceProvider',
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
+		'Collective\Html\HtmlServiceProvider',
 	],
 
 	/*
@@ -199,8 +196,8 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View' => 'Illuminate\Support\Facades\View',
 
-		'Form' => 'Illuminate\Html\FormFacade',
-		'HTML' => 'Illuminate\Html\HtmlFacade',
+		'Form' => 'Collective\Html\FormFacade',
+		'Html' => 'Collective\Html\HtmlFacade',
 		'Debugbar' => 'Barryvdh\Debugbar\Facade',
 	],
 
