@@ -49,7 +49,8 @@
                     </li>
                     <li><a href="{{ action('UsersController@index') }}"><span class="glyphicon glyphicon-user"
                                                                               aria-hidden="true"></span> Users</a></li>
-                    <li><a href="{{ action('FilesController@index') }}"><span class="glyphicon glyphicon-envelope"
+                    <li class="hidden"><a href="{{ action('FilesController@index') }}"><span
+                                    class="glyphicon glyphicon-envelope"
                                                                               aria-hidden="true"></span> Messages</a>
                     </li>
                 </ul>
