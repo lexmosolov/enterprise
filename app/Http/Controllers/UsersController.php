@@ -1,10 +1,13 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
-
-use App\User;
 use Illuminate\Http\Request;
+
+use App\Department;
+use App\Role;
+use App\User;
 use Redirect;
 
 class UsersController extends Controller
@@ -28,7 +31,9 @@ class UsersController extends Controller
 	 */
 	public function create()
 	{
-		return view('users.create');
+		$departments = Department::all()->lists('title', 'id');;
+		$roles = Role::all()->lists('title', 'id');;
+		return view('users.create', compact('departments', 'roles'));
 	}
 
 	/**
@@ -61,7 +66,9 @@ class UsersController extends Controller
 	 */
 	public function edit(User $user)
 	{
-		return view('users.edit', compact('user'));
+		$departments = Department::all()->lists('title', 'id');;
+		$roles = Role::all()->lists('title', 'id');;
+		return view('users.edit', compact('user', 'departments', 'roles'));
 	}
 
 	/**
