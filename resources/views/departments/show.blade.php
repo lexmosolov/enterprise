@@ -5,7 +5,7 @@
     <div class="panel panel-default">
 
         <div class="panel-heading">
-            {!! link_to_route('departments.index', 'Departments' ) !!} / {{ $department->name }}
+            {!! link_to_route('departments.index', 'Departments' ) !!} / {{ $department->title }}
         </div>
 
         @if ( !$department->users->count() )
@@ -19,13 +19,15 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Role</th>
                 </tr>
                 </thead>
                 <tbody data-link="row" class="rowlink">
                 @foreach( $department->users as $user )
                     <tr>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->name }}</td>
+                        <td><a href="{{ route('users.show', $user) }}">{{ $user->name }}</a></td>
+                        <td>{{ $user->role->title }}</td>
                     </tr>
                 @endforeach
                 </tbody>

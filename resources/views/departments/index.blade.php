@@ -19,7 +19,6 @@
                 <tr>
                     <th>#</th>
                     <th>Title</th>
-                    <th>Head</th>
                 </tr>
                 </thead>
                 <tbody data-link="row" class="rowlink">
@@ -27,9 +26,8 @@
                     <tr>
                         <td>{{ $department->id }}</td>
                         <td>
-                            <a href="{{ route('departments.show', $department) }}">{{ $department->name }}</a>
+                            <a href="{{ route('departments.show', $department) }}">{{ $department->title }}</a>
                         </td>
-                        <td>{{ $department->head->name }}</td>
                     </tr>
                 @endforeach
                 </tbody>
