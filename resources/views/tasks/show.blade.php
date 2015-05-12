@@ -20,6 +20,18 @@
                 <th>Description</th>
                 <td>{{ $task->description }}</td>
             </tr>
+            <tr>
+                <th>Guarantor</th>
+                <td>{{ $task->guarantor->name }}</td>
+            </tr>
+            <tr>
+                <th>Performer</th>
+                <td>{{ $task->performer->name }}</td>
+            </tr>
+            <tr>
+                <th>Deadline</th>
+                <td>{{ $task->deadline }}</td>
+            </tr>
             </tbody>
         </table>
         <div class="panel-footer">
