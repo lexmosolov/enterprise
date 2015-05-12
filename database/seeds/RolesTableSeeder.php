@@ -11,9 +11,9 @@ class RolesTableSeeder extends Seeder
 		DB::table('roles')->delete();
 
 		$roles = array(
-			['id' => 1, 'title' => 'Head'],
+			['id' => 1, 'title' => 'Worker'],
 			['id' => 2, 'title' => 'Manager'],
-			['id' => 3, 'title' => 'Worker'],
+			['id' => 3, 'title' => 'Head'],
 		);
 
 		DB::table('roles')->insert($roles);
