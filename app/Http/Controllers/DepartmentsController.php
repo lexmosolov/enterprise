@@ -85,7 +85,7 @@ class DepartmentsController extends Controller
 	{
 		$input = $request->all();
 		$department->update($input);
-		$department->users()->sync($input['user_list']);
+//		$department->users()->sync($input['user_list']);
 		return Redirect::route('departments.show', $department)->with('message', 'Department updated.');
 	}
 
