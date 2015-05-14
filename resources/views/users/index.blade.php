@@ -4,7 +4,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">USERS</h3>
+            <h3 class="panel-title">Users</h3>
         </div>
         @if ( !$users->count() )
             <div class="panel-body">
@@ -29,8 +29,8 @@
                             <a href="{{ route('users.show', $user) }}">{{ $user->name }}</a>
                         </td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->department->title }}</td>
-                        <td>{{ $user->role->title }}</td>
+                        <td>{{ $user->department->title or 'No' }}</td>
+                        <td>{{ $user->role->title or 'No' }}</td>
                     </tr>
                 @endforeach
                 </tbody>

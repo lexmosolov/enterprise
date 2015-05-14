@@ -4,7 +4,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">USER</h3>
+            <h3 class="panel-title">User</h3>
         </div>
         <table class="table table-bordered">
             <tbody>
@@ -18,11 +18,11 @@
             </tr>
             <tr>
                 <th>Department</th>
-                <td>{{ $user->department->title }}</td>
+                <td>{{ $user->department->title or 'No'}}</td>
             </tr>
             <tr>
                 <th>Role</th>
-                <td>{{ $user->role->title }}</td>
+                <td>{{ $user->role->title or 'No'}}</td>
             </tr>
             </tbody>
         </table>
