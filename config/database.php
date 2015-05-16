@@ -1,7 +1,7 @@
 <?php
 
 // ClearDB url
-$mysql_url = getenv('CLEARDB_DATABASE_URL');
+$mysql_url = parse_url(getenv("DATABASE_URL"));
 
 return [
 
