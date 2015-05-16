@@ -1,7 +1,13 @@
 <?php
 
 // ClearDB url
-$mysql_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+if (getenv("CLEARDB_DATABASE_URL")) {
+	$mysql_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+	putenv("DB_HOST=" + $mysql_url['host']);
+	putenv("DB_DATABASE=" + substr($mysql_url['path'], 1));
+	putenv("DB_USERNAME=" + $mysql_url['user']);
+	putenv("DB_PASSWORD=" + $mysql_url['pass']);
+}
 
 return [
 
@@ -57,10 +63,10 @@ return [
 
 		'mysql' => [
 			'driver' => 'mysql',
-			'host' => env('DB_HOST', $mysql_url['host']),
-			'database' => env('DB_DATABASE', substr($mysql_url['path'], 1)),
-			'username' => env('DB_USERNAME', $mysql_url['user']),
-			'password' => env('DB_PASSWORD', $mysql_url['pass']),
+			'host' => env('DB_HOST', 'localhost'),
+			'database' => env('DB_DATABASE', 'forge'),
+			'username' => env('DB_USERNAME', 'forge'),
+			'password' => env('DB_PASSWORD', ''),
 			'charset' => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix' => '',
