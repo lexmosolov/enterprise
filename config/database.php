@@ -1,14 +1,5 @@
 <?php
 
-// ClearDB url
-if (getenv("CLEARDB_DATABASE_URL")) {
-	$mysql_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-	putenv("DB_HOST=" + $mysql_url['host']);
-	putenv("DB_DATABASE=" + substr($mysql_url['path'], 1));
-	putenv("DB_USERNAME=" + $mysql_url['user']);
-	putenv("DB_PASSWORD=" + $mysql_url['pass']);
-}
-
 return [
 
 	/*
