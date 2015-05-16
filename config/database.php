@@ -1,11 +1,7 @@
 <?php
 
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$database = substr($url["path"], 1);
+// ClearDB url
+$mysql_url = getenv('CLEARDB_DATABASE_URL');
 
 return [
 
@@ -61,10 +57,10 @@ return [
 
 		'mysql' => [
 			'driver' => 'mysql',
-			'host' => env('DB_HOST', $host),
-			'database' => env('DB_DATABASE', $database),
-			'username' => env('DB_USERNAME', $username),
-			'password' => env('DB_PASSWORD', $password),
+			'host' => env('DB_HOST', $mysql_url['host']),
+			'database' => env('DB_DATABASE', substr($mysql_url['path'], 1)),
+			'username' => env('DB_USERNAME', $mysql_url['user']),
+			'password' => env('DB_PASSWORD', $mysql_url['pass']),
 			'charset' => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix' => '',
