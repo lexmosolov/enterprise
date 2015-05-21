@@ -15,7 +15,7 @@ class DepartmentsController extends Controller
 {
 
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of the department.
 	 *
 	 * @return Response
 	 */
@@ -26,7 +26,7 @@ class DepartmentsController extends Controller
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Show the form for creating a new department.
 	 *
 	 * @return Response
 	 */
@@ -37,22 +37,19 @@ class DepartmentsController extends Controller
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created department in storage.
 	 *
 	 * @param \Illuminate\Http\Request $request
 	 * @return Response
 	 */
 	public function store(DepartmentRequest $request)
 	{
-		// Getting All Input For The Request
-		$input = $request->all();
-		Department::create($input);
-//		$department->users()->attach($input['user_list']);
+		Department::create($request->all());
 		return Redirect::route('departments.index')->with('message', 'Department created');
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the specified department.
 	 *
 	 * @param Department $department
 	 * @return Response
@@ -63,7 +60,7 @@ class DepartmentsController extends Controller
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show the form for editing the specified department.
 	 *
 	 * @param Department $department
 	 * @return Response
@@ -75,7 +72,7 @@ class DepartmentsController extends Controller
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified department in storage.
 	 *
 	 * @param  \App\Project $project
 	 * @param \Illuminate\Http\Request $request
@@ -83,14 +80,12 @@ class DepartmentsController extends Controller
 	 */
 	public function update(Department $department, DepartmentRequest $request)
 	{
-		$input = $request->all();
-		$department->update($input);
-//		$department->users()->sync($input['user_list']);
+		$department->update($request->all());
 		return Redirect::route('departments.show', $department)->with('message', 'Department updated.');
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified department from storage.
 	 *
 	 * @param  Department $department
 	 * @return Response

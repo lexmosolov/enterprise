@@ -10,7 +10,7 @@ class TasksController extends Controller
 {
 
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of the task.
 	 *
 	 * @return Response
 	 */
@@ -21,7 +21,7 @@ class TasksController extends Controller
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Show the form for creating a new task.
 	 *
 	 * @return Response
 	 */
@@ -32,20 +32,19 @@ class TasksController extends Controller
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created task in storage.
 	 *
 	 * @param \Illuminate\Http\Request $request
 	 * @return Response
 	 */
 	public function store(TaskRequest $request)
 	{
-		$input = $request->all();
-		Task::create($input);
+		Task::create($request->all());
 		return Redirect::route('tasks.index')->with('message', 'Task created');
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the specified task.
 	 *
 	 * @param  \App\Task $task
 	 * @return Response
@@ -56,7 +55,7 @@ class TasksController extends Controller
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show the form for editing the specified task.
 	 *
 	 * @param  \App\Task $task
 	 * @return Response
@@ -68,7 +67,7 @@ class TasksController extends Controller
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified task in storage.
 	 *
 	 * @param  \App\Task $task
 	 * @param \Illuminate\Http\Request $request
@@ -76,13 +75,12 @@ class TasksController extends Controller
 	 */
 	public function update(Task $task, TaskRequest $request)
 	{
-		$input = $request->all();
-		$task->update($input);
+		$task->update($request->all());
 		return Redirect::route('tasks.show', $task)->with('message', 'Task updated.');
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified task from storage.
 	 *
 	 * @param  \App\Task $task
 	 * @return Response
