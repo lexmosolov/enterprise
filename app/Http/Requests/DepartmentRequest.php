@@ -24,10 +24,11 @@ class DepartmentRequest extends Request
 	public function rules()
 	{
 		// Get current model id if exists
+		// TODO: replace getting id from model to accurate method
 		$department_id = isset($this->departments->id) ? $this->departments->id : '';
 
 		return [
-			'title' => ['required', 'min:3', "unique:departments,title,{$department_id}"],
+			'title' => ['required', 'min:4', "unique:departments,title,{$department_id}"],
 		];
 	}
 
