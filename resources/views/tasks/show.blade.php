@@ -35,7 +35,7 @@
             </tbody>
         </table>
         <div class="panel-footer">
-            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('tasks.destroy', $task))) !!}
+            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'action' => array('TasksController@destroy', $task))) !!}
             {!! link_to_action('TasksController@edit', 'Edit', $task, ['class' => 'btn btn-info']) !!}
             {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
             {!! link_to_action('TasksController@index', 'Back', [], ['class' => 'btn btn-default']) !!}
