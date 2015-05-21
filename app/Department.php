@@ -6,6 +6,7 @@ class Department extends Model
 {
 
 	public $timestamps = false;
+
 	protected $fillable = ['title'];
 
 	public function getUserListAttribute()
@@ -17,4 +18,5 @@ class Department extends Model
 	{
 		return $this->hasMany('App\User');
 	}
+
 }
