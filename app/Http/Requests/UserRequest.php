@@ -22,9 +22,13 @@ class UserRequest extends Request
 	 */
 	public function rules()
 	{
+		// Get current model id if exists
+		// TODO: replace getting id from model to accurate method
+		$user_id = isset($this->users->id) ? $this->users->id : '';
+
 		return [
 			'name' => ['required', 'min:3'],
-			'email' => ['required', 'email'],
+			'email' => ['required', 'email', "unique:users,email,{$user_id}"],
 			'department_id' => ['required'],
 			'role_id' => ['required'],
 		];
