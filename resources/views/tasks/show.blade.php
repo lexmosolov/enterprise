@@ -36,9 +36,9 @@
         </table>
         <div class="panel-footer">
             {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('tasks.destroy', $task))) !!}
-            {!! link_to_route('tasks.edit', 'Edit', $task, ['class' => 'btn btn-info']) !!}
+            {!! link_to_action('TasksController@edit', 'Edit', $task, ['class' => 'btn btn-info']) !!}
             {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
-            {!! link_to_route('tasks.index', 'Back', [], ['class' => 'btn btn-default']) !!}
+            {!! link_to_action('TasksController@index', 'Back', [], ['class' => 'btn btn-default']) !!}
             {!! Form::close() !!}
         </div>
     </div>

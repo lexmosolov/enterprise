@@ -24,7 +24,7 @@
                 @foreach( $tasks as $task )
                     <tr>
                         <td>{{ $task->id }}</td>
-                        <td><a href="{{ route('tasks.show', $task) }}">{{ $task->name }}</a></td>
+                        <td><a href="{{ action('TasksController@show', $task) }}">{{ $task->name }}</a></td>
                         <td><input type="checkbox" {{ $task->completed ? 'checked' : 'unchecked' }} disabled></td>
                         <td>{{ $task->guarantor->name }}</td>
                         <td>{{ $task->performer->name }}</td>
@@ -36,7 +36,7 @@
         @endif
 
         <div class="panel-footer">
-            <a href="{{ route('tasks.create') }}" class="btn btn-success" role="button">
+            <a href="{{ action('TasksController@create') }}" class="btn btn-success" role="button">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 Create
             </a>

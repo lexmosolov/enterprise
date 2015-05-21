@@ -44,7 +44,7 @@ class UsersController extends Controller
 	public function store(UserRequest $request)
 	{
 		User::create($request->all());
-		return Redirect::route('users.index')->with('message', 'User created');
+		return Redirect::action('UsersController@index')->with('message', 'User created.');
 	}
 
 	/**
@@ -80,7 +80,7 @@ class UsersController extends Controller
 	public function update(User $user, UserRequest $request)
 	{
 		$user->update($request->all());
-		return Redirect::route('users.show', $user)->with('message', 'User updated.');
+		return Redirect::action('UsersController@show', $user)->with('message', 'User updated.');
 	}
 
 	/**
@@ -92,7 +92,7 @@ class UsersController extends Controller
 	public function destroy(User $user)
 	{
 		$user->delete();
-		return Redirect::route('users.index', $user)->with('message', 'User deleted.');
+		return Redirect::action('UsersController@index')->with('message', 'User deleted.');
 	}
 
 }

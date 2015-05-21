@@ -23,7 +23,7 @@
                 @foreach( $department->users as $user )
                     <tr>
                         <td>{{ $user->id }}</td>
-                        <td><a href="{{ route('users.show', $user) }}">{{ $user->name }}</a></td>
+                        <td><a href="{{ action('UsersController@show', $user) }}">{{ $user->name }}</a></td>
                         <td>{{ $user->role->title }}</td>
                     </tr>
                 @endforeach
@@ -31,10 +31,10 @@
             </table>
         @endif
         <div class="panel-footer">
-            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('departments.destroy', $department))) !!}
-            {!! link_to_route('departments.edit', 'Edit', $department, array('class' => 'btn btn-info')) !!}
+            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'action' => array('DepartmentsController@destroy', $department))) !!}
+            {!! link_to_action('DepartmentsController@edit', 'Edit', $department, array('class' => 'btn btn-info')) !!}
             {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
-            {!! link_to_route('departments.index', 'Back', [], ['class' => 'btn btn-default']) !!}
+            {!! link_to_action('DepartmentsController@index', 'Back', [], ['class' => 'btn btn-default']) !!}
             {!! Form::close() !!}
         </div>
     </div>

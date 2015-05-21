@@ -45,7 +45,7 @@ class DepartmentsController extends Controller
 	public function store(DepartmentRequest $request)
 	{
 		Department::create($request->all());
-		return Redirect::route('departments.index')->with('message', 'Department created');
+		return Redirect::action('DepartmentsController@index')->with('message', 'Department created.');
 	}
 
 	/**
@@ -81,7 +81,7 @@ class DepartmentsController extends Controller
 	public function update(Department $department, DepartmentRequest $request)
 	{
 		$department->update($request->all());
-		return Redirect::route('departments.show', $department)->with('message', 'Department updated.');
+		return Redirect::action('DepartmentsController@show', $department)->with('message', 'Department updated.');
 	}
 
 	/**
@@ -93,7 +93,7 @@ class DepartmentsController extends Controller
 	public function destroy(Department $department)
 	{
 		$department->delete();
-		return Redirect::route('departments.index')->with('message', 'Department deleted.');
+		return Redirect::action('DepartmentsController@index')->with('message', 'Department deleted.');
 	}
 
 }

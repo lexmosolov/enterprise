@@ -21,7 +21,7 @@
                     <tr>
                         <td>{{ $department->id }}</td>
                         <td>
-                            <a href="{{ route('departments.show', $department) }}">{{ $department->title }}</a>
+                            <a href="{{ action('DepartmentsController@show', $department) }}">{{ $department->title }}</a>
                         </td>
                     </tr>
                 @endforeach
@@ -30,7 +30,7 @@
         @endif
 
         <div class="panel-footer">
-            <a href="{{ route('departments.create') }}" class="btn btn-success" role="button">
+            <a href="{{ action('DepartmentsController@create') }}" class="btn btn-success" role="button">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 Create
             </a>

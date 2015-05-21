@@ -27,10 +27,10 @@
             </tbody>
         </table>
         <div class="panel-footer">
-            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('users.destroy', $user))) !!}
-            {!! link_to_route('users.edit', 'Edit', $user, array('class' => 'btn btn-info')) !!}
+            {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'action' => array('UsersController@destroy', $user))) !!}
+            {!! link_to_action('UsersController@edit', 'Edit', $user, array('class' => 'btn btn-info')) !!}
             {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
-            {!! link_to_route('users.index', 'Back', [], ['class' => 'btn btn-default']) !!}
+            {!! link_to_action('UsersController@index', 'Back', [], ['class' => 'btn btn-default']) !!}
             {!! Form::close() !!}
         </div>
     </div>

@@ -26,7 +26,7 @@
                     <tr>
                         <td>{{ $user->id }}</td>
                         <td>
-                            <a href="{{ route('users.show', $user) }}">{{ $user->name }}</a>
+                            <a href="{{ action('UsersController@show', $user) }}">{{ $user->name }}</a>
                         </td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->department->title or 'No' }}</td>
@@ -38,7 +38,7 @@
         @endif
 
         <div class="panel-footer">
-            <a href="{{ route('users.create') }}" class="btn btn-success" role="button">
+            <a href="{{ action('UsersController@create') }}" class="btn btn-success" role="button">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 Create
             </a>
