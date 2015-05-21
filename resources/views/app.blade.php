@@ -39,20 +39,14 @@
 
             @else
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
-                            Dashboard</a></li>
-                    <li><a href="{{ action('DepartmentsController@index') }}"><span class="glyphicon glyphicon-list-alt"
-                                                                                    aria-hidden="true"></span>
-                            Departments</a></li>
-                    <li><a href="{{ action('TasksController@index') }}"><span class="glyphicon glyphicon-tasks"
-                                                                              aria-hidden="true"></span> Tasks</a>
-                    </li>
-                    <li><a href="{{ action('UsersController@index') }}"><span class="glyphicon glyphicon-user"
-                                                                              aria-hidden="true"></span> Users</a></li>
-                    <li class="hidden"><a href="{{ action('FilesController@index') }}"><span
-                                    class="glyphicon glyphicon-envelope"
-                                                                              aria-hidden="true"></span> Messages</a>
-                    </li>
+                    <li><a href="{{ url('/') }}">
+                            <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashboard</a></li>
+                    <li><a href="{{ action('DepartmentsController@index') }}">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Departments</a></li>
+                    <li><a href="{{ action('TasksController@index') }}">
+                            <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Tasks</a></li>
+                    <li><a href="{{ action('UsersController@index') }}">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a></li>
                 </ul>
             @endif
 
