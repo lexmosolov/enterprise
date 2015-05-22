@@ -5,6 +5,7 @@ use App\Entry;
 use App\Http\Requests;
 use App\Http\Requests\EntryRequest;
 use App\User;
+use Auth;
 use Redirect;
 use Response;
 
@@ -19,7 +20,7 @@ class EntriesController extends Controller
 	public function index()
 	{
 		// TODO: load only entries for current user
-		$entries = Entry::with('creator')->get();
+		$entries = Entry::with('user')->get();
 		return view('entries.index', compact('entries'));
 	}
 
@@ -43,7 +44,8 @@ class EntriesController extends Controller
 	 */
 	public function store(EntryRequest $request)
 	{
-		$entry = Entry::create($request->all());
+		$entry = new Entry($request->all());
+		Auth::user()->entries()->save($entry);
 		$entry->users()->attach($request->input('user_list'));
 		$entry->departments()->attach($request->input('department_list'));
 		return Redirect::route('entries.index')->with('message', 'Entry created.');
