@@ -24,7 +24,7 @@
                     <tr>
                         <td>{{ $entry->created_at }}</td>
                         <td>{{ $entry->updated_at }}</td>
-                        <td>{{ $entry->creator->name }}</td>
+                        <td>{{ $entry->user->name }}</td>
                         <td><a href="{{ action('EntriesController@show', $entry) }}">{{ $entry->title }}</a></td>
                         <td>{{ $entry->body }}</td>
                     </tr>

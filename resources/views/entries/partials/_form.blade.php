@@ -4,10 +4,6 @@
         {!! Form::text('title', null, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('creator_id', 'Creator') !!}
-        {!! Form::select('creator_id', $users, null, ['class'=>'form-control']) !!}
-    </div>
-    <div class="form-group">
         {!! Form::label('body', 'Body') !!}
         {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
     </div>

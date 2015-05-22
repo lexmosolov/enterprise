@@ -9,8 +9,8 @@
         <table class="table table-bordered">
             <tbody>
             <tr>
-                <th>Creator</th>
-                <td>{{ $entry->creator->name }}</td>
+                <th>User</th>
+                <td>{{ $entry->user->name }}</td>
             </tr>
             <tr>
                 <th>Title</th>
