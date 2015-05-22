@@ -8,10 +8,9 @@ class Entry extends Model
 	public $fillable = [
 		'title',
 		'body',
-		'creator_id',
 	];
 
-	public function creator()
+	public function user()
 	{
 		return $this->belongsTo('App\User');
 	}
