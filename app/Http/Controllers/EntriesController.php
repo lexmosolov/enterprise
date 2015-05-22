@@ -66,7 +66,6 @@ class EntriesController extends Controller
 	/**
 	 * Show the form for editing the specified entry.
 	 *
-	 * @param EntryRequest $request
 	 * @return Response
 	 */
 	public function edit(Entry $entry)
@@ -93,7 +92,6 @@ class EntriesController extends Controller
 	/**
 	 * Remove the specified entry from storage.
 	 *
-	 * @param EntryRequest $request
 	 * @return Response
 	 */
 	public function destroy(Entry $entry)
