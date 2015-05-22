@@ -25,6 +25,9 @@ class TaskRequest extends Request
 		return [
 			'name' => ['required', 'min:3'],
 			'description' => ['required'],
+			'deadline' => ['required'],
+			'guarantor_id' => ['required', 'numeric'],
+			'performer_id' => ['required', 'numeric']
 		];
 	}
 
