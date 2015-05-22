@@ -29,8 +29,8 @@ class UserRequest extends Request
 		return [
 			'name' => ['required', 'min:3'],
 			'email' => ['required', 'email', "unique:users,email,{$user_id}"],
-			'department_id' => ['required'],
-			'role_id' => ['required'],
+			'department_id' => ['required', 'numeric'],
+			'role_id' => ['required', 'numeric'],
 		];
 	}
 
