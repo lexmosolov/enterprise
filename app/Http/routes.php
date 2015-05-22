@@ -14,7 +14,9 @@
 Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/', 'HomeController@index');
-	Route::get('files', 'FilesController@index');
+
+	Route::resource('entries', 'EntriesController');
+	Route::model('entries', 'App\Entry');
 
 	Route::resource('tasks', 'TasksController');
 	Route::model('tasks', 'App\Task');
