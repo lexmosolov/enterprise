@@ -15,10 +15,10 @@ class CreateEntriesTable extends Migration
 	{
 		Schema::create('entries', function (Blueprint $table) {
 			$table->increments('id');
+			$table->integer('user_id')->unsigned()->index();
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->string('title');
 			$table->string('body');
-			$table->integer('creator_id')->unsigned()->index();
-			$table->foreign('creator_id')->references('id')->on('users')->onDelete('cascade');
 			$table->timestamps();
 		});
 
