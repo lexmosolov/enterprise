@@ -25,7 +25,6 @@ class EntryRequest extends Request
 		return [
 			'title' => ['required', 'min:3'],
 			'body' => ['required', 'min:5'],
-			'creator_id' => ['required']
 		];
 	}
 
