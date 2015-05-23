@@ -44,8 +44,7 @@ class EntriesController extends Controller
 	 */
 	public function store(EntryRequest $request)
 	{
-		$entry = new Entry($request->all());
-		Auth::user()->entries()->save($entry);
+		$entry = Auth::user()->entries()->create($request->all());
 		$entry->users()->attach($request->input('user_list'));
 		$entry->departments()->attach($request->input('department_list'));
 		return Redirect::route('entries.index')->with('message', 'Entry created.');
