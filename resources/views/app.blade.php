@@ -42,7 +42,7 @@
                     <li><a href="{{ url('/') }}">
                             <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashboard</a></li>
                     <li><a href="{{ action('EntriesController@index') }}">
-                            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Entries
+                            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Entries</a></li>
                     <li><a href="{{ action('DepartmentsController@index') }}">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Departments</a></li>
                     <li><a href="{{ action('TasksController@index') }}">
