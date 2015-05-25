@@ -12,5 +12,6 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function (mix) {
-    mix.less('app.less');
+    mix.styles(['bootstrap.css', 'select2.css']);
+    mix.scripts(['jquery.js', 'select2.js', 'rowlink.js']);
 });
