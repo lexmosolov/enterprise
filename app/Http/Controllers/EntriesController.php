@@ -19,8 +19,7 @@ class EntriesController extends Controller
 	 */
 	public function index()
 	{
-		// TODO: load only entries for current user
-		$entries = Entry::with('user')->get();
+		$entries = Auth::user()->entriesForShow();
 		return view('entries.index', compact('entries'));
 	}
 
@@ -44,10 +43,33 @@ class EntriesController extends Controller
 	 */
 	public function store(EntryRequest $request)
 	{
-		$entry = Auth::user()->entries()->create($request->all());
-		$entry->users()->attach($request->input('user_list'));
-		$entry->departments()->attach($request->input('department_list'));
+		$this->createArticle($request);
 		return Redirect::route('entries.index')->with('message', 'Entry created.');
+	}
+
+	/**
+	 * Create a newly entry by a current user.
+	 *
+	 * @param EntryRequest $request
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
+	private function createArticle(EntryRequest $request)
+	{
+		$entry = Auth::user()->entries()->create($request->all());
+		$this->syncEntry($entry, $request);
+		return $entry;
+	}
+
+	/**
+	 * Sync up the lists of users and departments in the database.
+	 *
+	 * @param Entry $entry
+	 * @param EntryRequest $request
+	 */
+	private function syncEntry(Entry $entry, EntryRequest $request)
+	{
+		$entry->users()->sync((array)$request->input('user_list'));
+		$entry->departments()->sync((array)$request->input('department_list'));
 	}
 
 	/**
@@ -83,8 +105,7 @@ class EntriesController extends Controller
 	public function update(Entry $entry, EntryRequest $request)
 	{
 		$entry->update($request->all());
-		$entry->users()->sync((array)$request->input('user_list'));
-		$entry->departments()->sync((array)$request->input('department_list'));
+		$this->syncEntry($entry, $request);
 		return Redirect::route('entries.show', $entry)->with('message', 'Entry updated.');
 	}
 
