@@ -19,4 +19,9 @@ class Department extends Model
 		return $this->hasMany('App\User');
 	}
 
+	public function entries()
+	{
+		return $this->belongsToMany('App\Entry');
+	}
+
 }
