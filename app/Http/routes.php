@@ -18,11 +18,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', 'HomeController@index');
 
 	Route::resource('entries', 'EntriesController');
-	Route::get('/entries/{entries}/edit', ['before' => 'auth.entries', 'uses' => 'EntriesController@edit']);
+	Route::get('/entries/{entries}/edit', ['before' => 'owner.entries', 'uses' => 'EntriesController@edit']);
 	Route::model('entries', 'App\Entry');
 	// TODO: filter to middleware or maybe more useful
 	// TODO: other routes are vulnerable, example destroy
-	Route::filter('auth.entries', function ($route) {
+	Route::filter('owner.entries', function ($route) {
 		if ($route->parameter('entries')->user_id !== Auth::user()->id) {
 			return Redirect::back()->withErrors('Sorry, you can only access entries that you created');
 		}
