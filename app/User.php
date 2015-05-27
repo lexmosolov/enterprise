@@ -62,7 +62,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->belongsToMany('App\Entry');
 	}
 
-
 	/**
 	 * Get the entries created by the given user, associated with user and user department.
 	 *
@@ -70,9 +69,24 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	public function entriesForShow()
 	{
-		// TODO: rework dat bullshit ma`fucker!
+		if ($this->hasRole('admin')) {
+			return Entry::all();
+		}
+
+		// TODO: rework dat bullshit ma`fucker! No ORM magic CUNT!
 		$entries = $this->entries;                                    // Entries created 	  by user
 		$entries = $entries->merge($this->entriesFor);                // Entries associated with user
 		return $entries->merge($this->department->entries);        // Entries associated with user department
+	}
+
+	/**
+	 * Checks if the user has a role by its name.
+	 *
+	 * @param $role string
+	 * @return bool
+	 */
+	public function hasRole($role)
+	{
+		return $this->role->title == $role;
 	}
 }
