@@ -3,6 +3,7 @@
 use App\Department;
 use App\Entry;
 use App\Http\Requests;
+use App\Http\Requests\EditEntryRequest;
 use App\Http\Requests\EntryRequest;
 use App\User;
 use Auth;
@@ -72,6 +73,8 @@ class EntriesController extends Controller
 		$entry->departments()->sync((array)$request->input('department_list'));
 	}
 
+	// TODO: write permission request
+
 	/**
 	 * Display the specified entry.
 	 *
@@ -89,7 +92,7 @@ class EntriesController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function edit(Entry $entry)
+	public function edit(Entry $entry, EditEntryRequest $request)
 	{
 		$users = User::lists('name', 'id');
 		$departments = Department::lists('title', 'id');
@@ -114,7 +117,7 @@ class EntriesController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function destroy(Entry $entry)
+	public function destroy(Entry $entry, EditEntryRequest $request)
 	{
 		$entry->delete();
 		return Redirect::route('entries.index')->with('message', 'Entry deleted.');
