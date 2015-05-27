@@ -26,7 +26,7 @@
                         <td>{{ $entry->updated_at }}</td>
                         <td>{{ $entry->user->name }}</td>
                         <td><a href="{{ action('EntriesController@show', $entry) }}">{{ $entry->title }}</a></td>
-                        <td>{{ $entry->body }}</td>
+                        <td>{{ str_limit($entry->body, 25) }}</td>
                     </tr>
                 @endforeach
                 </tbody>
