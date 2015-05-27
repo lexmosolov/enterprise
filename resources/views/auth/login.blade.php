@@ -42,7 +42,7 @@
                                     <button type="submit" class="btn btn-primary">Login</button>
 
                                     <a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your
-                                        Password?</a>
+                                                                                                Password?</a>
                                 </div>
                             </div>
                         </form>
@@ -50,5 +50,31 @@
                 </div>
             </div>
         </div>
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>E-Mail Address</th>
+                <th>Password</th>
+            </tr>
+            </thead>
+            <tbody data-link="row" class="rowlink">
+            <tr>
+                <td>admin@admin.com</td>
+                <td>admin</td>
+            </tr>
+            <tr>
+                <td>head@head.com</td>
+                <td>head</td>
+            </tr>
+            <tr>
+                <td>manager@manager.com</td>
+                <td>manager</td>
+            </tr>
+            <tr>
+                <td>worker@worker.com</td>
+                <td>worker</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 @endsection
