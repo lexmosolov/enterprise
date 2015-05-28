@@ -24,7 +24,8 @@
 @section('footer')
     <script>
         $(".select2").select2({
-            allowClear: true
+            allowClear: true,
+            closeOnSelect: false
         });
     </script>
 @endsection
