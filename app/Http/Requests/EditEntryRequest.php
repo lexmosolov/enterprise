@@ -16,9 +16,9 @@ class EditEntryRequest extends Request
 		if (Auth::user()->hasRole('admin')) {
 			return true;
 		}
+		// Check that current entry exist and auth user is owner
 		$currentId = $this->route('entries')->id;
-		return Entry::where('id', $currentId)
-			->where('user_id', Auth::id())->exists();
+		return Entry::where('id', $currentId)->where('user_id', Auth::id())->exists();
 	}
 
 	/**
