@@ -4,7 +4,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            Dashboard
+            <h3 class="panel-title">Dashboard</h3>
         </div>
 
         <div class="panel-body">
