@@ -16,7 +16,8 @@ class TasksController extends Controller
 	 */
 	public function index()
 	{
-		$tasks = Task::with('guarantor', 'performer')->get();
+		// Get root of task hierarchy (nulled parent_id)
+		$tasks = Task::with('childrenRecursive')->whereNull('parent_id')->get();
 		return view('tasks.index', compact('tasks'));
 	}
 
