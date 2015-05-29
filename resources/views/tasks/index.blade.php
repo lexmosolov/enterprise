@@ -9,30 +9,14 @@
         @if ( !$tasks->count() )
             <div class="panel-body">You have no tasks.</div>
         @else
-            <table class="table table-hover table-bordered">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Completed</th>
-                    <th>Guarantor</th>
-                    <th>Performer</th>
-                    <th>Deadline</th>
-                </tr>
-                </thead>
-                <tbody data-link="row" class="rowlink">
-                @foreach( $tasks as $task )
-                    <tr>
-                        <td>{{ $task->id }}</td>
-                        <td><a href="{{ action('TasksController@show', $task) }}">{{ $task->name }}</a></td>
-                        <td><input type="checkbox" {{ $task->completed ? 'checked' : 'unchecked' }} disabled></td>
-                        <td>{{ $task->guarantor->name }}</td>
-                        <td>{{ $task->performer->name }}</td>
-                        <td>{{ $task->deadline }}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+            <div class="panel-body">
+                <ul class="list-group">
+                    {{--@each('tasks.partials._task', $tasks, 'task')--}}
+                    @foreach ($tasks as $task)
+                        @include('tasks.partials._task', $task)
+                    @endforeach
+                </ul>
+            </div>
         @endif
 
         <div class="panel-footer">
