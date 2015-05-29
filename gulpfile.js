@@ -12,6 +12,6 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function (mix) {
-    mix.styles(['bootstrap.css', 'select2.css']);
-    mix.scripts(['jquery.js', 'bootstrap.js', 'select2.js', 'rowlink.js']);
+    mix.styles(['bootstrap.css', 'select2.css', 'jquery.treegrid.css']);
+    mix.scripts(['jquery.js', 'bootstrap.js', 'select2.js', 'rowlink.js', 'jquery.treegrid.js', 'jquery.treegrid.bootstrap3.js']);
 });

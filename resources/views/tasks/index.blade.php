@@ -6,17 +6,15 @@
         <div class="panel-heading">
             <h3 class="panel-title">Tasks</h3>
         </div>
+
         @if ( !$tasks->count() )
             <div class="panel-body">You have no tasks.</div>
         @else
-            <div class="panel-body">
-                <ul class="list-group">
-                    {{--@each('tasks.partials._task', $tasks, 'task')--}}
-                    @foreach ($tasks as $task)
-                        @include('tasks.partials._task', $task)
-                    @endforeach
-                </ul>
-            </div>
+            <table class="table tree">
+                @foreach ($tasks as $task)
+                    @include('tasks.partials._task', $task)
+                @endforeach
+            </table>
         @endif
 
         <div class="panel-footer">
@@ -27,4 +25,10 @@
         </div>
     </div>
 
+@endsection
+
+@section('footer')
+    <script>
+        $('.tree').treegrid();
+    </script>
 @endsection
