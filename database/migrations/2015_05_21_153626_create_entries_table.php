@@ -44,6 +44,8 @@ class CreateEntriesTable extends Migration
 	 */
 	public function down()
 	{
+		Schema::drop('department_entry');
+		Schema::drop('entry_user');
 		Schema::drop('entries');
 	}
 
