@@ -6,6 +6,8 @@ use Redirect;
 abstract class Request extends FormRequest
 {
 
+	protected $message = 'Sorry but you can not do this.';
+
 	/**
 	 * Redirect back with message for a forbidden auth operation.
 	 *
@@ -13,7 +15,7 @@ abstract class Request extends FormRequest
 	 */
 	public function forbiddenResponse()
 	{
-		return Redirect::back()->with('message', 'Sorry but you have no rights to do this.');
+		return Redirect::back()->with('message', $this->message);
 	}
 
 }
