@@ -9,6 +9,10 @@
         <table class="table table-bordered">
             <tbody>
             <tr>
+                <th>Parent</th>
+                <td>{{ $task->parent->name or 'No' }}</td>
+            </tr>
+            <tr>
                 <th>Name</th>
                 <td>{{ $task->name }}</td>
             </tr>
