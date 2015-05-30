@@ -15,12 +15,14 @@
 
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::get('/','DashboardController@index');
+	Route::get('/', 'DashboardController@index');
+
+	Route::get('support', 'SupportController@create');
+	Route::post('support', 'SupportController@send');
+
 	Route::get('profile', 'ProfileController@edit');
 	Route::patch('profile', 'ProfileController@update');
 
-	Route::get('support','SupportController@create');
-	Route::post('support','SupportController@send');
 	Route::resource('entries', 'EntriesController');
 	Route::model('entries', 'App\Entry');
 
