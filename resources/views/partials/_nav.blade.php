@@ -21,11 +21,11 @@
                     <li><a href="{{ action('EntriesController@index') }}">
                             <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Entries</a></li>
                     <li><a href="{{ action('DepartmentsController@index') }}">
-                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Departments</a></li>
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Our Departments</a></li>
                     <li><a href="{{ action('TasksController@index') }}">
-                            <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Tasks</a></li>
+                            <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> My Tasks</a></li>
                     <li><a href="{{ action('UsersController@index') }}">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a></li>
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> User Management</a></li>
                 </ul>
             @endif
 
