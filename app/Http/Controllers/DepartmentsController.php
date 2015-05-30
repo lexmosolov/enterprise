@@ -21,7 +21,8 @@ class DepartmentsController extends Controller
 	 */
 	public function index()
 	{
-		$departments = Department::all();
+		// Get root of department hierarchy (nulled parent_id)
+		$departments = Department::with('childrenRecursive')->whereNull('parent_id')->get();
 		return view('departments.index', compact('departments'));
 	}
 
