@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -77,7 +78,7 @@ class UsersController extends Controller
 	 * @param  int $id
 	 * @return Response
 	 */
-	public function update(User $user, UserRequest $request)
+	public function update(User $user, UpdateUserRequest $request)
 	{
 		$user->update($request->all());
 		return Redirect::action('UsersController@show', $user)->with('message', 'User updated.');
