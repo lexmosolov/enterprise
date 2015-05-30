@@ -17,6 +17,11 @@ class CreateDepartmentsTable extends Migration
 			$table->increments('id');
 			$table->string('title')->unique();
 		});
+
+		Schema::table('departments', function (Blueprint $table) {
+			$table->integer('parent_id')->unsigned()->index()->nullable();
+			$table->foreign('parent_id')->references('id')->on('departments')->onDelete('cascade');
+		});
 	}
 
 	/**
