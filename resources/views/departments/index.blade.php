@@ -6,26 +6,14 @@
         <div class="panel-heading">
             <h3 class="panel-title">Departments</h3>
         </div>
+
         @if ( !$departments->count() )
             <div class="panel-body">You have no departments.</div>
         @else
-            <table class="table table-hover table-bordered">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Title</th>
-                </tr>
-                </thead>
-                <tbody data-link="row" class="rowlink">
-                @foreach( $departments as $department )
-                    <tr>
-                        <td>{{ $department->id }}</td>
-                        <td>
-                            <a href="{{ action('DepartmentsController@show', $department) }}">{{ $department->title }}</a>
-                        </td>
-                    </tr>
+            <table class="table tree">
+                @foreach ($departments as $department)
+                    @include('departments.partials._department', $department)
                 @endforeach
-                </tbody>
             </table>
         @endif
 
@@ -37,4 +25,10 @@
         </div>
     </div>
 
+@endsection
+
+@section('footer')
+    <script>
+        $('.tree').treegrid();
+    </script>
 @endsection
