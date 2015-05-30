@@ -15,6 +15,7 @@
 
 Route::group(['middleware' => 'auth'], function () {
 
+	Route::get('/','DashboardController@index');
 
 	Route::resource('entries', 'EntriesController');
 	Route::model('entries', 'App\Entry');
