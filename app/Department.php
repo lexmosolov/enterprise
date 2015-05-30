@@ -39,4 +39,34 @@ class Department extends Model
 		return $this->belongsToMany('App\Entry');
 	}
 
+	/**
+	 * Get the all children associated with the given Task.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Builder|static
+	 */
+	public function childrenRecursive()
+	{
+		return $this->children()->with('childrenRecursive');
+	}
+
+	/**
+	 * Get the immediate children associated with the given Task.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function children()
+	{
+		return $this->hasMany('App\Department', 'parent_id');
+	}
+
+	/**
+	 * Get the parent Task associated with the given Task.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function parent()
+	{
+		return $this->belongsTo('App\Department', 'parent_id');
+	}
+
 }
