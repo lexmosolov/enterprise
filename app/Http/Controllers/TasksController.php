@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Requests\TaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Task;
 use App\User;
 use Redirect;
@@ -29,7 +30,8 @@ class TasksController extends Controller
 	public function create()
 	{
 		$users = User::all()->lists('name', 'id');
-		return view('tasks.create', compact('users'));
+		$tasks = Task::all()->lists('name', 'id');
+		return view('tasks.create', compact('users', 'tasks'));
 	}
 
 	/**
@@ -64,7 +66,8 @@ class TasksController extends Controller
 	public function edit(Task $task)
 	{
 		$users = User::all()->lists('name', 'id');
-		return view('tasks.edit', compact('task', 'users'));
+		$tasks = Task::where('id', '!=', $task['id'])->lists('name', 'id'); // Load all tasks exclude current
+		return view('tasks.edit', compact('task', 'users', 'tasks'));
 	}
 
 	/**
@@ -74,8 +77,12 @@ class TasksController extends Controller
 	 * @param \Illuminate\Http\Request $request
 	 * @return Response
 	 */
-	public function update(Task $task, TaskRequest $request)
+	public function update(Task $task, UpdateTaskRequest $request)
 	{
+		// TODO: rewrite this bullshit
+		if ($request['parent_id'] == 0) {
+			$request['parent_id'] = null;
+		}
 		$task->update($request->all());
 		return Redirect::route('tasks.show', $task)->with('message', 'Task updated.');
 	}
