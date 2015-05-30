@@ -16,6 +16,8 @@
 Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/','DashboardController@index');
+	Route::get('profile', 'ProfileController@edit');
+	Route::patch('profile', 'ProfileController@update');
 
 	Route::get('support','SupportController@create');
 	Route::post('support','SupportController@send');
