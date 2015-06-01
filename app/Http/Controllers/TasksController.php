@@ -42,6 +42,11 @@ class TasksController extends Controller
 	 */
 	public function store(TaskRequest $request)
 	{
+		// TODO: rewrite this bullshit
+		if ($request['parent_id'] == 0)
+		{
+			$request['parent_id'] = null;
+		}
 		Task::create($request->all());
 		return Redirect::route('tasks.index')->with('message', 'Task created');
 	}
