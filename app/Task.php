@@ -5,7 +5,22 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
 
-	protected $guarded = [];
+	/**
+	 * The attributes that aren't mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $guarded = ['id'];
+
+	/**
+	 * Get the parent Task associated with the given Task.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function parent()
+	{
+		return $this->belongsTo('App\Task', 'parent_id');
+	}
 
 	/**
 	 * Get the guarantor associated with the given Task.
@@ -48,13 +63,13 @@ class Task extends Model
 	}
 
 	/**
-	 * Get the parent Task associated with the given Task.
+	 * Transform wrong parent_id attribute when setting setting them to null&
 	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 * @param $value
 	 */
-	public function parent()
+	public function setParentIdAttribute($value)
 	{
-		return $this->belongsTo('App\Task', 'parent_id');
+		$this->attributes['parent_id'] = $value ?: null;
 	}
 
 }

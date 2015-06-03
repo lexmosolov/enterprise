@@ -7,8 +7,7 @@ use App\Task;
 use App\User;
 use Redirect;
 
-class TasksController extends Controller
-{
+class TasksController extends Controller {
 
 	/**
 	 * Display a listing of the task.
@@ -19,6 +18,7 @@ class TasksController extends Controller
 	{
 		// Get root of task hierarchy (nulled parent_id)
 		$tasks = Task::with('childrenRecursive')->whereNull('parent_id')->get();
+
 		return view('tasks.index', compact('tasks'));
 	}
 
@@ -31,6 +31,7 @@ class TasksController extends Controller
 	{
 		$users = User::all()->lists('name', 'id');
 		$tasks = Task::all()->lists('name', 'id');
+
 		return view('tasks.create', compact('users', 'tasks'));
 	}
 
@@ -42,12 +43,8 @@ class TasksController extends Controller
 	 */
 	public function store(TaskRequest $request)
 	{
-		// TODO: rewrite this bullshit
-		if ($request['parent_id'] == 0)
-		{
-			$request['parent_id'] = null;
-		}
 		Task::create($request->all());
+
 		return Redirect::route('tasks.index')->with('message', 'Task created');
 	}
 
@@ -84,11 +81,8 @@ class TasksController extends Controller
 	 */
 	public function update(Task $task, UpdateTaskRequest $request)
 	{
-		// TODO: rewrite this bullshit
-		if ($request['parent_id'] == 0) {
-			$request['parent_id'] = null;
-		}
 		$task->update($request->all());
+
 		return Redirect::route('tasks.show', $task)->with('message', 'Task updated.');
 	}
 
@@ -101,6 +95,7 @@ class TasksController extends Controller
 	public function destroy(Task $task)
 	{
 		$task->delete();
+
 		return Redirect::route('tasks.index')->with('message', 'Task deleted.');
 	}
 
