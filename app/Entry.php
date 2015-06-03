@@ -2,33 +2,26 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Entry extends Model
-{
-
-	public $fillable = [
-		'title',
-		'body',
-	];
-
+class Entry extends Model {
 
 	/**
-	 * Get the user associated with the given entry.
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	public $fillable = [
+		'title',
+		'body'
+	];
+
+	/**
+	 * Get the creator user associated with the given entry.
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
 	public function user()
 	{
 		return $this->belongsTo('App\User');
-	}
-
-	/**
-	 * Get a list of department ids associated with the given entry.
-	 *
-	 * @return array
-	 */
-	public function getDepartmentListAttribute()
-	{
-		return $this->departments()->lists('id');
 	}
 
 	/**
@@ -42,6 +35,26 @@ class Entry extends Model
 	}
 
 	/**
+	 * Get the users associated with the given entry.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function users()
+	{
+		return $this->belongsToMany('App\User');
+	}
+
+	/**
+	 * Get a list of department ids associated with the given entry.
+	 *
+	 * @return array
+	 */
+	public function getDepartmentListAttribute()
+	{
+		return $this->departments()->lists('id');
+	}
+
+	/**
 	 * Get a list of users ids associated with the given entry.
 	 *
 	 * @return array
@@ -51,13 +64,4 @@ class Entry extends Model
 		return $this->users()->lists('id');
 	}
 
-	/**
-	 * Get the users associated with the given entry.
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-	 */
-	public function users()
-	{
-		return $this->belongsToMany('App\User');
-	}
 }
