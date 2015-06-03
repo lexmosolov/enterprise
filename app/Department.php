@@ -2,12 +2,64 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Department extends Model
-{
+class Department extends Model {
 
+	/**
+	 * Indicates that the model should not be timestamped.
+	 *
+	 * @var bool
+	 */
 	public $timestamps = false;
 
-	protected $fillable = ['title'];
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	public $fillable = [
+		'title',
+		'parent_id'
+	];
+
+	/**
+	 * Get the entries associated by the given department.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function entries()
+	{
+		return $this->belongsToMany('App\Entry');
+	}
+
+	/**
+	 * Get the all children associated with the given department.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Builder|static
+	 */
+	public function childrenRecursive()
+	{
+		return $this->children()->with('childrenRecursive');
+	}
+
+	/**
+	 * Get the immediate children associated with the given department.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function children()
+	{
+		return $this->hasMany('App\Department', 'parent_id');
+	}
+
+	/**
+	 * Get the parent department associated with the given department.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function parent()
+	{
+		return $this->belongsTo('App\Department', 'parent_id');
+	}
 
 	/**
 	 * Get a list of users ids associated with the given department.
@@ -30,43 +82,13 @@ class Department extends Model
 	}
 
 	/**
-	 * Get the entries associated by the given department.
+	 * Transform wrong parent_id attribute to setting them to null.
 	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 * @param $value
 	 */
-	public function entries()
+	public function setParentIdAttribute($value)
 	{
-		return $this->belongsToMany('App\Entry');
-	}
-
-	/**
-	 * Get the all children associated with the given Task.
-	 *
-	 * @return \Illuminate\Database\Eloquent\Builder|static
-	 */
-	public function childrenRecursive()
-	{
-		return $this->children()->with('childrenRecursive');
-	}
-
-	/**
-	 * Get the immediate children associated with the given Task.
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 */
-	public function children()
-	{
-		return $this->hasMany('App\Department', 'parent_id');
-	}
-
-	/**
-	 * Get the parent Task associated with the given Task.
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 */
-	public function parent()
-	{
-		return $this->belongsTo('App\Department', 'parent_id');
+		$this->attributes['parent_id'] = $value ?: null;
 	}
 
 }

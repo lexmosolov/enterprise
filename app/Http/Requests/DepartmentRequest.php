@@ -2,6 +2,8 @@
 
 use App\Department;
 use Psy\Util\String;
+use Auth;
+
 
 class DepartmentRequest extends Request
 {
@@ -13,7 +15,10 @@ class DepartmentRequest extends Request
 	 */
 	public function authorize()
 	{
-		return true;
+		if (Auth::user()->hasRole('admin'))
+		{
+			return true;
+		}
 	}
 
 	/**

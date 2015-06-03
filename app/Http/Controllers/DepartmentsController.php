@@ -1,18 +1,12 @@
 <?php namespace App\Http\Controllers;
 
 use App\Department;
-use App\User;
 use App\Http\Requests;
 use App\Http\Requests\DepartmentRequest;
-use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
-use Input;
+use App\User;
 use Redirect;
-use Illuminate\Support\Str;
 
-class DepartmentsController extends Controller
-{
+class DepartmentsController extends Controller {
 
 	/**
 	 * Display a listing of the department.
@@ -23,6 +17,7 @@ class DepartmentsController extends Controller
 	{
 		// Get root of department hierarchy (nulled parent_id)
 		$departments = Department::with('childrenRecursive')->whereNull('parent_id')->get();
+
 		return view('departments.index', compact('departments'));
 	}
 
@@ -34,18 +29,21 @@ class DepartmentsController extends Controller
 	public function create()
 	{
 		$users = User::all()->lists('name', 'id');
-		return view('departments.create', compact('users'));
+		$departments = Department::all()->lists('title', 'id');
+
+		return view('departments.create', compact('users', 'departments'));
 	}
 
 	/**
 	 * Store a newly created department in storage.
 	 *
-	 * @param \Illuminate\Http\Request $request
+	 * @param DepartmentRequest $request
 	 * @return Response
 	 */
 	public function store(DepartmentRequest $request)
 	{
 		Department::create($request->all());
+
 		return Redirect::action('DepartmentsController@index')->with('message', 'Department created.');
 	}
 
@@ -68,20 +66,24 @@ class DepartmentsController extends Controller
 	 */
 	public function edit(Department $department)
 	{
+		// TODO: fix the users input form using
 		$users = User::all()->lists('name', 'id');
-		return view('departments.edit', compact('department', 'users'));
+		$departments = Department::all()->lists('title', 'id');
+
+		return view('departments.edit', compact('department', 'users', 'departments'));
 	}
 
 	/**
 	 * Update the specified department in storage.
 	 *
-	 * @param  \App\Project $project
-	 * @param \Illuminate\Http\Request $request
+	 * @param Department        $department
+	 * @param DepartmentRequest $request
 	 * @return Response
 	 */
 	public function update(Department $department, DepartmentRequest $request)
 	{
 		$department->update($request->all());
+
 		return Redirect::action('DepartmentsController@show', $department)->with('message', 'Department updated.');
 	}
 
@@ -91,9 +93,10 @@ class DepartmentsController extends Controller
 	 * @param  Department $department
 	 * @return Response
 	 */
-	public function destroy(Department $department)
+	public function destroy(Department $department, DepartmentRequest $request)
 	{
 		$department->delete();
+
 		return Redirect::action('DepartmentsController@index')->with('message', 'Department deleted.');
 	}
 
