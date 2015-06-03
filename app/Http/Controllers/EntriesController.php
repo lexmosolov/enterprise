@@ -3,15 +3,16 @@
 use App\Department;
 use App\Entry;
 use App\Http\Requests;
-use App\Http\Requests\EditEntryRequest;
-use App\Http\Requests\EntryRequest;
+use App\Http\Requests\Entry\EntryRequest;
+use App\Http\Requests\Entry\EntryStoreRequest;
+use App\Http\Requests\Entry\EntryUpdateRequest;
+use App\Http\Requests\Entry\EntryDestroyRequest;
 use App\User;
 use Auth;
 use Redirect;
 use Response;
 
-class EntriesController extends Controller
-{
+class EntriesController extends Controller {
 
 	/**
 	 * Display a listing of the entry.
@@ -21,6 +22,7 @@ class EntriesController extends Controller
 	public function index()
 	{
 		$entries = Auth::user()->entriesForShow();
+
 		return view('entries.index', compact('entries'));
 	}
 
@@ -33,18 +35,20 @@ class EntriesController extends Controller
 	{
 		$users = User::lists('name', 'id');
 		$departments = Department::lists('title', 'id');
+
 		return view('entries.create', compact('users', 'departments'));
 	}
 
 	/**
 	 * Store a newly created entry in storage.
 	 *
-	 * @param EntryRequest $request
+	 * @param EntryStoreRequest $request
 	 * @return Response
 	 */
-	public function store(EntryRequest $request)
+	public function store(EntryStoreRequest $request)
 	{
-		$this->createArticle($request);
+		$this->createEntry($request);
+
 		return Redirect::route('entries.index')->with('message', 'Entry created.');
 	}
 
@@ -54,10 +58,11 @@ class EntriesController extends Controller
 	 * @param EntryRequest $request
 	 * @return \Illuminate\Database\Eloquent\Model
 	 */
-	private function createArticle(EntryRequest $request)
+	private function createEntry(EntryRequest $request)
 	{
 		$entry = Auth::user()->entries()->create($request->all());
 		$this->syncEntry($entry, $request);
+
 		return $entry;
 	}
 
@@ -69,11 +74,9 @@ class EntriesController extends Controller
 	 */
 	private function syncEntry(Entry $entry, EntryRequest $request)
 	{
-		$entry->users()->sync((array)$request->input('user_list'));
-		$entry->departments()->sync((array)$request->input('department_list'));
+		$entry->users()->sync((array)$request->user_list);
+		$entry->departments()->sync((array)$request->department_list);
 	}
-
-	// TODO: write permission request
 
 	/**
 	 * Display the specified entry.
@@ -90,36 +93,44 @@ class EntriesController extends Controller
 	/**
 	 * Show the form for editing the specified entry.
 	 *
+	 * @param Entry $entry
 	 * @return Response
 	 */
-	public function edit(Entry $entry, EditEntryRequest $request)
+	public function edit(Entry $entry)
 	{
 		$users = User::lists('name', 'id');
 		$departments = Department::lists('title', 'id');
+
 		return view('entries.edit', compact('entry', 'users', 'departments'));
 	}
 
 	/**
 	 * Update the specified entry in storage.
 	 *
-	 * @param EntryRequest $request
+	 * @param Entry              $entry
+	 * @param EntryUpdateRequest $request
 	 * @return Response
 	 */
-	public function update(Entry $entry, EntryRequest $request)
+	public function update(Entry $entry, EntryUpdateRequest $request)
 	{
 		$entry->update($request->all());
 		$this->syncEntry($entry, $request);
+
 		return Redirect::route('entries.show', $entry)->with('message', 'Entry updated.');
 	}
 
 	/**
 	 * Remove the specified entry from storage.
 	 *
+	 * @param Entry               $entry
+	 * @param EntryDestroyRequest $request
 	 * @return Response
+	 * @throws \Exception
 	 */
-	public function destroy(Entry $entry, EditEntryRequest $request)
+	public function destroy(Entry $entry, EntryDestroyRequest $request)
 	{
 		$entry->delete();
+
 		return Redirect::route('entries.index')->with('message', 'Entry deleted.');
 	}
 

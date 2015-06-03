@@ -17,10 +17,9 @@ class EntryRequest extends Request {
 		{
 			return true;
 		}
-		// Check that current entry exist and auth user is owner
-		$currentId = $this->route('entries')->id;
 
-		return Entry::where('id', $currentId)->where('user_id', Auth::id())->exists();
+		// Check that auth user is owner of current entry
+		return $this->route('entries')->user_id == Auth::id();
 	}
 
 	/**
