@@ -1,12 +1,9 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Requests\UpdateUserRequest;
-use App\Http\Requests\UserRequest;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
 use App\Department;
+use App\Http\Requests;
+use App\Http\Requests\User\UpdateUserRequest;
+use App\Http\Requests\User\UserRequest;
 use App\Role;
 use App\User;
 use Redirect;
@@ -22,6 +19,7 @@ class UsersController extends Controller
 	public function index()
 	{
 		$users = User::with('department', 'role')->get();
+
 		return view('users.index', compact('users'));
 	}
 
@@ -34,24 +32,27 @@ class UsersController extends Controller
 	{
 		$departments = Department::all()->lists('title', 'id');;
 		$roles = Role::all()->lists('title', 'id');;
+
 		return view('users.create', compact('departments', 'roles'));
 	}
 
 	/**
 	 * Store a newly created user in storage.
 	 *
+	 * @param UserRequest $request
 	 * @return Response
 	 */
 	public function store(UserRequest $request)
 	{
 		User::create($request->all());
+
 		return Redirect::action('UsersController@index')->with('message', 'User created.');
 	}
 
 	/**
 	 * Display the specified user.
 	 *
-	 * @param  int $id
+	 * @param User $user
 	 * @return Response
 	 */
 	public function show(User $user)
@@ -62,37 +63,44 @@ class UsersController extends Controller
 	/**
 	 * Show the form for editing the specified user.
 	 *
-	 * @param  int $id
+	 * @param User $user
 	 * @return Response
 	 */
 	public function edit(User $user)
 	{
 		$departments = Department::all()->lists('title', 'id');;
 		$roles = Role::all()->lists('title', 'id');;
+
 		return view('users.edit', compact('user', 'departments', 'roles'));
 	}
 
 	/**
 	 * Update the specified user in storage.
 	 *
-	 * @param  int $id
+	 * @param User              $user
+	 * @param UpdateUserRequest $request
 	 * @return Response
 	 */
-	public function update(User $user, UpdateUserRequest $request)
+	public function update(User $user, UserRequest $request)
 	{
 		$user->update($request->all());
+
 		return Redirect::action('UsersController@show', $user)->with('message', 'User updated.');
 	}
 
 	/**
 	 * Remove the specified user from storage.
 	 *
-	 * @param  int $id
+	 * @param User        $user
+	 * @param UserRequest $request
 	 * @return Response
+	 * @throws \Exception
+	 * @internal param int $id
 	 */
-	public function destroy(User $user)
+	public function destroy(User $user, UserRequest $request)
 	{
 		$user->delete();
+
 		return Redirect::action('UsersController@index')->with('message', 'User deleted.');
 	}
 

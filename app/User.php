@@ -1,13 +1,12 @@
 <?php namespace App;
 
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract
-{
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
 	use Authenticatable, CanResetPassword;
 
@@ -55,6 +54,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	/**
 	 * Get the entries associated with the given user.
+	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
 	 */
 	public function entriesFor()
@@ -69,14 +69,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	public function entriesForShow()
 	{
-		if ($this->hasRole('admin')) {
+		if ($this->hasRole('admin'))
+		{
 			return Entry::all();
 		}
 
 		// TODO: rework dat bullshit ma`fucker! No ORM magic CUNT!
-		$entries = $this->entries;                                    // Entries created 	  by user
-		$entries = $entries->merge($this->entriesFor);                // Entries associated with user
-		return $entries->merge($this->department->entries);        // Entries associated with user department
+		$entries = $this->entries
+			->merge($this->entriesFor)// Entries associated with user
+			->merge($this->department->entries);    // Entries associated with user department
+
+		return $entries;
 	}
 
 	/**
@@ -89,4 +92,5 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	{
 		return $this->role->title == $role;
 	}
+
 }

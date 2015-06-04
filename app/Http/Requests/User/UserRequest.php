@@ -1,6 +1,7 @@
-<?php namespace App\Http\Requests;
+<?php namespace App\Http\Requests\User;
 
 use App\Http\Requests\Request;
+use Auth;
 
 class UserRequest extends Request
 {
@@ -12,7 +13,7 @@ class UserRequest extends Request
 	 */
 	public function authorize()
 	{
-		return true;
+		return Auth::user()->hasRole('admin');
 	}
 
 	/**
