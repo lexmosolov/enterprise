@@ -15,10 +15,7 @@ class DepartmentRequest extends Request
 	 */
 	public function authorize()
 	{
-		if (Auth::user()->hasRole('admin'))
-		{
-			return true;
-		}
+		return Auth::user()->hasRole('admin');
 	}
 
 	/**
