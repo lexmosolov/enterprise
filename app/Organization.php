@@ -20,4 +20,14 @@ class Organization extends Model {
 		'title'
 	];
 
+	/**
+	 * Get the departments associated with the given organization.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function departments()
+	{
+		return $this->hasMany('App\Department');
+	}
+
 }
