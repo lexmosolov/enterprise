@@ -48,33 +48,37 @@
                         </form>
                     </div>
                 </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">Login Details</div>
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>E-Mail Address</th>
+                            <th>Password</th>
+                        </tr>
+                        </thead>
+                        <tbody data-link="row" class="rowlink">
+                        <tr>
+                            <td>admin@admin.com</td>
+                            <td>admin</td>
+                        </tr>
+                        <tr>
+                            <td>head@head.com</td>
+                            <td>head</td>
+                        </tr>
+                        <tr>
+                            <td>manager@manager.com</td>
+                            <td>manager</td>
+                        </tr>
+                        <tr>
+                            <td>worker@worker.com</td>
+                            <td>worker</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
         </div>
-        <table class="table table-hover table-bordered">
-            <thead>
-            <tr>
-                <th>E-Mail Address</th>
-                <th>Password</th>
-            </tr>
-            </thead>
-            <tbody data-link="row" class="rowlink">
-            <tr>
-                <td>admin@admin.com</td>
-                <td>admin</td>
-            </tr>
-            <tr>
-                <td>head@head.com</td>
-                <td>head</td>
-            </tr>
-            <tr>
-                <td>manager@manager.com</td>
-                <td>manager</td>
-            </tr>
-            <tr>
-                <td>worker@worker.com</td>
-                <td>worker</td>
-            </tr>
-            </tbody>
-        </table>
     </div>
 @endsection

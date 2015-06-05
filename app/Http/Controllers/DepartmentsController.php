@@ -43,6 +43,7 @@ class DepartmentsController extends Controller {
 	public function store(DepartmentRequest $request)
 	{
 		Department::create($request->all());
+		$entry->users()->sync((array)$request->user_list);
 
 		return Redirect::action('DepartmentsController@index')->with('message', 'Department created.');
 	}
@@ -83,6 +84,7 @@ class DepartmentsController extends Controller {
 	public function update(Department $department, DepartmentRequest $request)
 	{
 		$department->update($request->all());
+		$department->users()->sync((array)$request->user_list);
 
 		return Redirect::action('DepartmentsController@show', $department)->with('message', 'Department updated.');
 	}

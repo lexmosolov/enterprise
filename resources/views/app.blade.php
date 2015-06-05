@@ -9,10 +9,10 @@
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
 </head>
 <body>
-@include('partials._nav')
 
 <div class="container">
     <div class="col-md-8 col-md-offset-2">
+        @include('partials._nav')
         @include('partials._errors')
         @yield('content')
         </div>

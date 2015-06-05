@@ -17,7 +17,6 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Department</th>
                     <th>Role</th>
                 </tr>
                 </thead>
@@ -29,7 +28,6 @@
                             <a href="{{ action('UsersController@show', $user) }}">{{ $user->name }}</a>
                         </td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->department->title or 'No' }}</td>
                         <td>{{ $user->role->title or 'No' }}</td>
                     </tr>
                 @endforeach

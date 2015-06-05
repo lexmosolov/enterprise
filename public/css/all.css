@@ -6912,15 +6912,6 @@ button.close {
     }
 }
 
-.navbar .navbar-nav {
-    display: inline-block;
-    float: none
-}
-
-.navbar .navbar-collapse {
-    text-align: center
-}
-
 body {
     background-color: #8594A5
 }

@@ -25,11 +25,21 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	protected $hidden = ['password', 'remember_token'];
 
 	/**
+	 * Get a list of department ids associated with the given entry.
+	 *
+	 * @return array
+	 */
+	public function getDepartmentListAttribute()
+	{
+		return $this->departments()->lists('id');
+	}
+
+	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
-	public function department()
+	public function departments()
 	{
-		return $this->belongsTo('App\Department');
+		return $this->belongsToMany('App\Department');
 	}
 
 	/**
@@ -94,10 +104,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			return Entry::all();
 		}
 
+//		dd($this->entriesFor);
+
 		// TODO: rework dat bullshit ma`fucker! No ORM magic CUNT!
 		$entries = $this->entries
-			->merge($this->entriesFor)// Entries associated with user
-			->merge($this->department->entries);    // Entries associated with user department
+			->merge($this->entriesFor);// Entries associated with user
+
+		// Entries associated with user departments
+		foreach ($this->departments() as $department)
+		{
+			$entries->merge($department->entries);
+		}
 
 		return $entries;
 	}

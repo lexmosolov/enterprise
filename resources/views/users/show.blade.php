@@ -17,8 +17,14 @@
                 <td>{{ $user->email }}</td>
             </tr>
             <tr>
-                <th>Department</th>
-                <td>{{ $user->department->title or 'No'}}</td>
+                <th>Departments</th>
+                <td>
+                    @forelse($user->departments as $department)
+                        <li>{{ $department->title}}</li>
+                    @empty
+                        <p>No</p>
+                    @endforelse
+                </td>
             </tr>
             <tr>
                 <th>Role</th>
