@@ -1,15 +1,11 @@
 <div class="panel-body">
     <div class="form-group">
         {!! Form::label('parent_id', 'Parent') !!}
-        {!! Form::select('parent_id', ["0" => 'No'] + $tasks, null, ['class'=>'form-control']) !!}
+        {!! Form::select('parent_id', ['No'] + $tasks, null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('name', 'Name') !!}
         {!! Form::text('name', null, ['class' => 'form-control']) !!}
-    </div>
-    <div class="form-group">
-        {!! Form::label('guarantor_id', 'Guarantor') !!}
-        {!! Form::select('guarantor_id', $users, null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('performer_id', 'Performer') !!}

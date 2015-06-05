@@ -1,8 +1,8 @@
-<?php namespace App\Http\Requests;
+<?php namespace App\Http\Requests\Task;
 
-use App\Http\Requests\TaskRequest;
+use Auth;
 
-class UpdateTaskRequest extends TaskRequest
+class TaskUpdateRequest extends TaskRequest
 {
 
 	/**
@@ -12,6 +12,16 @@ class UpdateTaskRequest extends TaskRequest
 	 */
 	public function authorize()
 	{
+		// check author of tasks
+		if ($this->route('tasks')->guarantor_id != Auth::user()->id)
+		{
+			// check if user changed performer
+			if ($this->performer_id != $this->route('tasks')->performer_id)
+			{
+				return false;
+			}
+		}
+
 		// check complete status of children task for change complete status request task
 		if ($this->completed != $this->route('tasks')->completed) {
 			foreach ($this->route('tasks')->children as $children) {

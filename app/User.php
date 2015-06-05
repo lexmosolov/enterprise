@@ -53,6 +53,26 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	}
 
 	/**
+	 * Get the tasks associated with the given user.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function allTasks()
+	{
+		return $this->hasMany('App\Task', 'performer_id')->orWhere('guarantor_id', $this->id);
+	}
+
+	/**
+	 * Get the tasks created by the given user.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function tasks()
+	{
+		return $this->hasMany('App\Task', 'guarantor_id');
+	}
+
+	/**
 	 * Get the entries associated with the given user.
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

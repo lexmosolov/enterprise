@@ -1,4 +1,4 @@
-<?php namespace App\Http\Requests;
+<?php namespace App\Http\Requests\Task;
 
 use App\Http\Requests\Request;
 
@@ -26,7 +26,6 @@ class TaskRequest extends Request
 			'name' => ['required', 'min:3'],
 			'description' => ['required'],
 			'deadline' => ['required'],
-			'guarantor_id' => ['required', 'numeric'],
 			'performer_id' => ['required', 'numeric']
 		];
 	}

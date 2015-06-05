@@ -1,10 +1,12 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Requests\TaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Requests\Task\TaskRequest;
+use App\Http\Requests\Task\TaskUpdateRequest;
+use App\Http\Requests\Task\TaskShowRequest;
 use App\Task;
 use App\User;
+use Auth;
 use Redirect;
 
 class TasksController extends Controller {
@@ -17,7 +19,8 @@ class TasksController extends Controller {
 	public function index()
 	{
 		// Get root of task hierarchy (nulled parent_id)
-		$tasks = Task::with('childrenRecursive')->whereNull('parent_id')->get();
+//		$tasks = Task::with('childrenRecursive')->whereNull('parent_id')->get();
+		$tasks = Auth::user()->allTasks;
 
 		return view('tasks.index', compact('tasks'));
 	}
@@ -43,7 +46,7 @@ class TasksController extends Controller {
 	 */
 	public function store(TaskRequest $request)
 	{
-		Task::create($request->all());
+		Auth::user()->tasks()->create($request->all());
 
 		return Redirect::route('tasks.index')->with('message', 'Task created');
 	}
@@ -51,10 +54,11 @@ class TasksController extends Controller {
 	/**
 	 * Display the specified task.
 	 *
-	 * @param  \App\Task $task
+	 * @param  \App\Task      $task
+	 * @param TaskShowRequest $request
 	 * @return Response
 	 */
-	public function show(Task $task)
+	public function show(Task $task, TaskShowRequest $request)
 	{
 		return view('tasks.show', compact('task'));
 	}
@@ -69,6 +73,7 @@ class TasksController extends Controller {
 	{
 		$users = User::all()->lists('name', 'id');
 		$tasks = Task::where('id', '!=', $task['id'])->lists('name', 'id'); // Load all tasks exclude current
+
 		return view('tasks.edit', compact('task', 'users', 'tasks'));
 	}
 
@@ -79,7 +84,7 @@ class TasksController extends Controller {
 	 * @param \Illuminate\Http\Request $request
 	 * @return Response
 	 */
-	public function update(Task $task, UpdateTaskRequest $request)
+	public function update(Task $task, TaskUpdateRequest $request)
 	{
 		$task->update($request->all());
 
