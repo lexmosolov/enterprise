@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Enterprise Portal Prototype</a>
+            <a class="navbar-brand" href="{{ url('/') }}">Portal</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -16,16 +16,14 @@
 
             @else
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">
-                            <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashboard</a></li>
+                    <li><a href="{{ action('DepartmentsController@index') }}">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Departments</a></li>
+                    <li><a href="{{ action('UsersController@index') }}">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a></li>
                     <li><a href="{{ action('EntriesController@index') }}">
                             <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Entries</a></li>
-                    <li><a href="{{ action('DepartmentsController@index') }}">
-                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Our Departments</a></li>
                     <li><a href="{{ action('TasksController@index') }}">
-                            <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> My Tasks</a></li>
-                    <li><a href="{{ action('UsersController@index') }}">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> User Management</a></li>
+                            <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Tasks</a></li>
                 </ul>
             @endif
 

@@ -1300,8 +1300,7 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
-    color: #333;
-    background-color: #fff
+    color: #333
 }
 
 button, input, select, textarea {
@@ -6911,6 +6910,19 @@ button.close {
     .hidden-print {
         display: none !important
     }
+}
+
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none
+}
+
+.navbar .navbar-collapse {
+    text-align: center
+}
+
+body {
+    background-color: #8594A5
 }
 
 .select2-container {
