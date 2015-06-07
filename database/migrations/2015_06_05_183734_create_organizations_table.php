@@ -20,7 +20,7 @@ class CreateOrganizationsTable extends Migration {
 
 		Schema::table('departments', function (Blueprint $table)
 		{
-			$table->integer('organization_id')->unsigned()->index()->nullable();
+			$table->integer('organization_id')->unsigned()->index();
 			$table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
 		});
 	}

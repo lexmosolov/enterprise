@@ -18,8 +18,19 @@ class Department extends Model {
 	 */
 	public $fillable = [
 		'title',
+		'organization_id',
 		'parent_id'
 	];
+
+	/**
+	 * Get the organization associated by the given department.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function organization()
+	{
+		return $this->belongsTo('App\Organization');
+	}
 
 	/**
 	 * Get the entries associated by the given department.

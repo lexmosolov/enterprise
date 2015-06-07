@@ -3,6 +3,7 @@
 use App\Department;
 use App\Http\Requests;
 use App\Http\Requests\DepartmentRequest;
+use App\Organization;
 use App\User;
 use Redirect;
 
@@ -28,10 +29,11 @@ class DepartmentsController extends Controller {
 	 */
 	public function create()
 	{
+		$organizations = Organization::all()->lists('title', 'id');
 		$users = User::all()->lists('name', 'id');
 		$departments = Department::all()->lists('title', 'id');
 
-		return view('departments.create', compact('users', 'departments'));
+		return view('departments.create', compact('organizations', 'users', 'departments'));
 	}
 
 	/**
@@ -67,11 +69,11 @@ class DepartmentsController extends Controller {
 	 */
 	public function edit(Department $department)
 	{
-		// TODO: fix the users input form using
+		$organizations = Organization::all()->lists('title', 'id');
 		$users = User::all()->lists('name', 'id');
 		$departments = Department::all()->lists('title', 'id');
 
-		return view('departments.edit', compact('department', 'users', 'departments'));
+		return view('departments.edit', compact('organizations', 'department', 'users', 'departments'));
 	}
 
 	/**
