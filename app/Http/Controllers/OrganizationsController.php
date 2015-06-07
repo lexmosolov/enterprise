@@ -4,6 +4,7 @@ use App\Department;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\OrganizationRequest;
 use App\Organization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -41,7 +42,7 @@ class OrganizationsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
+	public function store(OrganizationRequest $request)
 	{
 		$organization = Organization::create($request->all());
 
@@ -78,7 +79,7 @@ class OrganizationsController extends Controller {
 	 * @param Organization $organization
 	 * @return Response
 	 */
-	public function update(Organization $organization, Request $request)
+	public function update(Organization $organization, OrganizationRequest $request)
 	{
 		$organization->update($request->all());
 
