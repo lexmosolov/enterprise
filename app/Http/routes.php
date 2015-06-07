@@ -29,6 +29,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('tasks', 'TasksController');
 	Route::model('tasks', 'App\Task');
 
+	Route::resource('organizations', 'OrganizationsController');
+	Route::model('organizations', 'App\Organization');
+
 	Route::resource('departments', 'DepartmentsController');
 	Route::model('departments', 'App\Department');
 

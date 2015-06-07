@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}">Enterprise Portal System</a>
+            <a class="navbar-brand" href="{{ url('/') }}">EIP</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -16,6 +16,8 @@
 
             @else
                 <ul class="nav navbar-nav">
+                    <li><a href="{{ action('OrganizationsController@index') }}">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Organizations</a></li>
                     <li><a href="{{ action('DepartmentsController@index') }}">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Departments</a></li>
                     <li><a href="{{ action('UsersController@index') }}">

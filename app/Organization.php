@@ -21,6 +21,16 @@ class Organization extends Model {
 	];
 
 	/**
+	 * Get a list of department ids associated with the given entry.
+	 *
+	 * @return array
+	 */
+	public function getDepartmentListAttribute()
+	{
+		return $this->departments()->lists('id');
+	}
+
+	/**
 	 * Get the departments associated with the given organization.
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
