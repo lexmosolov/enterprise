@@ -1,6 +1,7 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Auth;
 
 class OrganizationRequest extends Request {
 
@@ -11,7 +12,7 @@ class OrganizationRequest extends Request {
 	 */
 	public function authorize()
 	{
-		return true;
+		return Auth::user()->hasRole('admin');
 	}
 
 	/**
