@@ -36,10 +36,13 @@
         @endif
 
         <div class="panel-footer">
-            <a href="{{ action('UsersController@create') }}" class="btn btn-success" role="button">
+            <a href="{{ action('UsersController@create') }}"
+               class="btn btn-success {{ Auth::user()->hasRole('admin') ? '' : 'disabled' }}" role="button">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 Create
             </a>
+
+
         </div>
     </div>
 

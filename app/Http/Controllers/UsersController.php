@@ -2,6 +2,7 @@
 
 use App\Department;
 use App\Http\Requests;
+use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Requests\User\UserRequest;
 use App\Role;
@@ -28,7 +29,7 @@ class UsersController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create(CreateUserRequest $request)
 	{
 		$departments = Department::all()->lists('title', 'id');;
 		$roles = Role::all()->lists('title', 'id');;
@@ -45,6 +46,7 @@ class UsersController extends Controller
 	public function store(UserRequest $request)
 	{
 		User::create($request->all());
+		$user->departments()->sync((array)$request->department_list);
 
 		return Redirect::action('UsersController@index')->with('message', 'User created.');
 	}
@@ -84,6 +86,7 @@ class UsersController extends Controller
 	public function update(User $user, UserRequest $request)
 	{
 		$user->update($request->all());
+		$user->departments()->sync((array)$request->department_list);
 
 		return Redirect::action('UsersController@show', $user)->with('message', 'User updated.');
 	}
@@ -97,7 +100,7 @@ class UsersController extends Controller
 	 * @throws \Exception
 	 * @internal param int $id
 	 */
-	public function destroy(User $user, UserRequest $request)
+	public function destroy(User $user)
 	{
 		$user->delete();
 

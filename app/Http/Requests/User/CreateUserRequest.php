@@ -3,8 +3,7 @@
 use App\Http\Requests\Request;
 use Auth;
 
-class UserRequest extends Request
-{
+class CreateUserRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -23,15 +22,7 @@ class UserRequest extends Request
 	 */
 	public function rules()
 	{
-		// Get current model id if exists
-		// TODO: replace getting id from model to accurate method
-		$user_id = isset($this->users->id) ? $this->users->id : '';
-
-		return [
-			'name' => ['required', 'min:3'],
-			'email' => ['required', 'email', "unique:users,email,{$user_id}"],
-			'role_id' => ['required', 'numeric'],
-		];
+		return [];
 	}
 
 }
